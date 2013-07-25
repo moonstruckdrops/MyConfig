@@ -1,0 +1,41 @@
+[user]
+	name = moonstruckdrops
+	email = moonstruckdrops@gmail.com
+
+
+ [color]
+    ui =auto
+ [gui]
+    encoding = utf-8
+ [core]
+    excludesfile = ~/.gitignore
+    autocrlf = input
+    quotepath = false
+    editor = /Applications/Emacs.app/Contents/MacOS/bin/emacsclient 
+    pager = LESS=-R less
+ [push]
+    default = tracking
+ [alias]
+    co = checkout
+    ci = commit -v
+    st = status -sb
+    br = branch
+    bra = branch -a
+    me = merge
+    di = diff --word-diff
+    dc = diff --cached --word-diff
+    up = checkout .
+    l = log --oneline --decorate
+    lg = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s' --decorate
+    lga = log --graph --all --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s' --decorate
+    lf = log --name-only --color --decorate
+    lgrep = log --pickaxe-regex -S
+    rt = remote -v
+    sm = submodule
+    pr = pull --rebase
+    ri = rebase -i
+    smupdate = submodule foreach "git checkout master; git pull origin master"
+    sb = show-branch --sha1-name
+    tr = log --graph --pretty='format:%C(yellow)%h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset'
+    pick = cherry-pick
+    rb = checkout -- 
