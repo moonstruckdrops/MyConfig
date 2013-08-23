@@ -1,8 +1,6 @@
 [user]
 	name = moonstruckdrops
 	email = moonstruckdrops@gmail.com
-
-
  [color]
     ui =auto
  [gui]
@@ -11,7 +9,7 @@
     excludesfile = ~/.gitignore
     autocrlf = input
     quotepath = false
-    editor = /Applications/Emacs.app/Contents/MacOS/bin/emacsclient 
+    editor = /usr/local/bin/emacsclient
     pager = LESS=-R less
  [push]
     default = tracking
