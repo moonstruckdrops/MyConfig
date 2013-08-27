@@ -21,7 +21,19 @@ export LANG
 #
 ##############################
 # ls
-export LSCOLORS=gxfxcxdxbxegedabagacad
+if [ `echo "${OSTYPE}" |grep "linux*"` ];then
+    eval `dircolors ~/.dircolors`
+    alias ls='ls --time-style="+%Y/%m/%d %H:%M:%S" --color=auto'
+elif [ `/usr/local/bin/brew 'list' | grep 'coreutils'` ]&&[ -f ~/.dircolors ];then
+    # Homebrewインストール(GNU)
+    eval `gdircolors ~/.dircolors`
+    alias ls='gls --time-style="+%Y/%m/%d %H:%M:%S" --color=auto'
+else
+    # Macデフォルト(BSD)
+    export LSCOLORS=gxfxcxdxbxegedabagacad
+    alias ls='ls -G'
+fi
+
 # Ruby
 export RBENV_ROOT=/usr/local/var/rbenv
 if which rbenv > /dev/null; then
@@ -34,6 +46,8 @@ export GROOVY_HOME='/usr/local/Cellar/groovy/2.1.5/libexec'
 # Android
 export ANDROID_HOME=/usr/local/share/android-sdk
 # export ANDROID_SOURCE=~/source/Android
+
+
 # TOMCAT
 export CATALINA_HOME='/usr/local/Cellar/tomcat/7.0.29/libexec'
 
@@ -80,11 +94,6 @@ else
     export PS1="\u@\h:\w$"    
 fi
 
-##############################
-#
-# CustomPath
-#
-##############################
 # Java
 PATH=${JAVA_HOME}/bin:$PATH
 # Android
@@ -104,8 +113,7 @@ alias emacs="/usr/local/bin/emacs"
 alias ec="/usr/local/bin/emacsclient"
 alias javac='javac -J-Dfile.encoding=UTF8'
 alias eclipse="/Applications/eclipse/Eclipse.app/Contents/MacOS/eclipse"
-alias ls="ls -G"
-alias ll="ls -atl"
+alias ll='ls -atlh'
 
 
 #alias mvn='/usr/local/Cellar/maven2/2.2.1/bin/mvn'
