@@ -22,15 +22,20 @@ export LANG
 ##############################
 # ls
 if [ `echo "${OSTYPE}" |grep "linux*"` ];then
-    eval `dircolors ~/.dircolors`
+    eval `dircolors ~/.dir_colors`
     alias ls='ls --time-style="+%Y/%m/%d %H:%M:%S" --color=auto'
-elif [ `/usr/local/bin/brew 'list' | grep 'coreutils'` ]&&[ -f ~/.dircolors ];then
+elif [ `/usr/local/bin/brew 'list' | grep 'coreutils'` ]&&[ -f ~/.dir_colors ];then
     # Homebrewインストール(GNU)
-    eval `gdircolors ~/.dircolors`
+    # CustomColor
+    # di=36;40:ln=1;;40:so=35;47:pi=0;46:ex=31;40:bd=35;47:cd=35;47:su=0;41:sg=0;46:tw=36;43:ow=36;45:
+    eval `gdircolors ~/.dir_colors`
     alias ls='gls --time-style="+%Y/%m/%d %H:%M:%S" --color=auto'
 else
     # Macデフォルト(BSD)
-    export LSCOLORS=gxfxcxdxbxegedabagacad
+    # Mac's default color.
+    # LSCOLORS=gxfxcxdxbxegedabagacad
+    # LS_COLORS=di=36;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:
+    export LSCOLORS=gxGxfhagbxfhfhabaggdgf
     alias ls='ls -G'
 fi
 
