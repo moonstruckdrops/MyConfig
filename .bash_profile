@@ -54,7 +54,7 @@ export ANDROID_HOME=/usr/local/share/android-sdk
 
 
 # TOMCAT
-export CATALINA_HOME='/usr/local/Cellar/tomcat/7.0.29/libexec'
+export CATALINA_HOME='/usr/local/Cellar/tomcat/7.0.42/libexec'
 
 # Golang
 #export GOROOT=$HOME/go/src
@@ -62,7 +62,8 @@ export CATALINA_HOME='/usr/local/Cellar/tomcat/7.0.29/libexec'
 #export GOARCH=386
 #export GOBIN=$HOME/go/bin
 #export PATH=$GOBIN:$PATH
-
+export GOPATH="/usr/local/Cellar/go/1.1.2/"
+export PATH=$PATH:$GOPATH/bin
 
 ##############################
 #
