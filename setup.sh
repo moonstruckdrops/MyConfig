@@ -3,10 +3,19 @@
 #=========================
 # Check Dependency App
 #=========================
+# Check Xquartz
 if [ ! `/usr/bin/which 'Xquartz'` ] ;then
     echo "Please install Xquartz App"
     echo "From: http://xquartz.macosforge.org/"
     exit 1
+fi
+
+# Check JAVA_HOME
+if [ ! `echo $JAVA_HOME` ] ;then
+    echo "Please install Java Development Kit"
+    echo "And Set JAVA_HOME"
+    echo "From: http://www.oracle.com/technetwork/java/javase/downloads/index.html"
+    exit 1    
 fi
 
 #=========================
@@ -23,12 +32,12 @@ brew tap homebrew/binary
 #==========================
 # Instal Apps with Homebrew
 #==========================
-# Install Git
-brew install git
-
 # Install Bash
 brew install bash
 brew install bash-completion
+
+# Install Git
+brew install git
 
 # Install coreutils
 brew install coreutils
@@ -59,6 +68,8 @@ brew install packer
 
 # Install wireshark
 brew install wireshark --with-x
+curl https://bugs.wireshark.org/bugzilla/attachment.cgi?id=3373 -o ChmodBPF.tar.gz
+tar zxvf ChmodBPF.tar.gz
 
 # Install jq
 brew install jq
@@ -89,15 +100,32 @@ echo "Finish Install Apps"
 echo "Do the following"
 echo "=============================================="
 echo ""
+echo "bash Settings"
+echo "fix /etc/shells"
+echo "chpass -s /usr/local/bin/bash"
+echo ""
+echo ""
 echo "bash-completion Settings"
 echo "if [ -f $(brew --prefix)/etc/bash_completion ]; then"
 echo "  . $(brew --prefix)/etc/bash_completion"
 echo "fi"
 echo ""
+echo "coreutils Settings"
+echo "PATH=\"/usr/local/opt/coreutils/libexec/gnubin:$PATH\""
+echo "MANPATH=\"/usr/local/opt/coreutils/libexec/gnuman:$MANPATH\""
+echo ""
 echo "MySQL Settings"
+echo "ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents"
+echo "launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
 echo "mysql.server start"
 echo "mysqladmin -u root password \"your password\""
+echo "mysqladmin -u root -h your hostname password \"your password\""
 echo ""
 echo "rbenv Settings"
 echo "export RBENV_ROOT=/usr/local/var/rbenv"
-echo " if which rbenv > /dev/null; then eval \"$(rbenv init -)\"; fi"
+echo "if which rbenv > /dev/null; then"
+echo "  eval \"$(rbenv init -)\";"
+echo "fi"
+echo ""
+echo "wireshark Settings"
+echo "open ChmodBPF/Install\ ChmodBPF.app"
