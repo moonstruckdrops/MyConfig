@@ -1,0 +1,10 @@
+*.*~
+#*#
+._*
+*.elc
+backups/**
+conf/.twitter.el
+share/frm.tags
+ac-comphist.dat
+.DS_Store
+.emacs.d/url/cookies
