@@ -72,8 +72,8 @@
 (setq inhibit-startup-message t)
 ;; カーソル位置の行を強調
 (global-hl-line-mode t)
-;; 画面の透過度を設定
-(set-frame-parameter nil 'alpha 50)
+;; 画面の透過度を設定(0から100までの数値を指定)
+(set-frame-parameter nil 'alpha 100)
 
 ;; ---------------------
 ;; モードラインの設定
