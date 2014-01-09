@@ -58,3 +58,8 @@
 (when (require 'ruby-block nil t)
   (ruby-block-mode t)
   (setq ruby-block-highlight-toggle t))
+
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
