@@ -200,7 +200,7 @@
 (load ".my_backup_restore")
 
 ;;(require 'navi2ch)
-(load ".twitter")
+;;(load ".twitter")
 
 (load ".ruby")
 (load ".objective-c")
