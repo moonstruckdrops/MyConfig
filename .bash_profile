@@ -45,7 +45,7 @@ if which rbenv > /dev/null; then
     eval "$(rbenv init -)";
 fi
 #Java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
 # Groovy
 export GROOVY_HOME='/usr/local/Cellar/groovy/2.1.5/libexec'
 # Android
