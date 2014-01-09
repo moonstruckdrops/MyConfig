@@ -15,13 +15,27 @@ if [ ! `echo $JAVA_HOME` ] ;then
     echo "Please install Java Development Kit"
     echo "And Set JAVA_HOME"
     echo "From: http://www.oracle.com/technetwork/java/javase/downloads/index.html"
-    exit 1    
+    exit 1
+fi
+
+# Check Virtual Box
+if [ ! `/usr/bin/which 'VirtualBox'` ] ;then
+    echo "Please install VirtualBox App"
+    echo "From: https://www.virtualbox.org/"
+    exit 1
+fi
+
+# Check Vagrant
+if [ ! `/usr/bin/which 'vagrant'` ] ;then
+    echo "Please install Vagrant"
+    echo "From: http://www.vagrantup.com/"
+    exit 1
 fi
 
 #=========================
 # Install Homebrew
 #=========================
-ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 
 #=========================
 # Homebrew's setting
@@ -45,7 +59,7 @@ brew install coreutils
 # Install Emacs
 brew install emacs --cocoa --keep-ctags --srgb --with-gnutls --with-x
 
-# Install Ruby 
+# Install Ruby
 brew install rbenv
 brew install ruby-build --with-openssl
 
@@ -74,6 +88,9 @@ tar zxvf ChmodBPF.tar.gz
 # Install jq
 brew install jq
 
+# Install tree
+brew install tree
+
 #==========================
 # link for installed app
 #==========================
@@ -82,10 +99,23 @@ brew linkapps
 #==========================
 # Ruby Settings from rbenv
 #==========================
-rbenv install 2.0.0-p247
-rbenv rehash
-rbenv global 2.0.0-p247
-rbenv rehash
+export RBENV_ROOT=/usr/local/var/rbenv
+if which rbenv > /dev/null; then
+    eval "$(rbenv init -)";
+fi
+/usr/local/bin/rbenv install 2.0.0-p247
+/usr/local/bin/rbenv global 2.0.0-p247
+/usr/local/bin/rbenv rehash
+
+#==========================
+# Ruby Settings from gem
+#==========================
+gem install bundler --no-ri --no-rdoc
+gem install rails --no-ri --no-rdoc
+gem install padrino --no-ri --no-rdoc
+gem install chef --no-ri --no-rdoc
+gem install knife-solo --no-ri --no-rdoc
+
 
 #==========================
 # MySql Settings
