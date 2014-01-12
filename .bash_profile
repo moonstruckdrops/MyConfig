@@ -14,6 +14,14 @@ export PATH=/usr/local/sbin:$PATH
 export LANG=ja_JP.UTF-8
 export LANG
 
+##############################
+#
+# Get the aliases and functions
+#
+##############################
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
 
 ##############################
 #
@@ -88,6 +96,7 @@ fi
 #fi
 
 
+
 ##############################
 #
 # prompt
@@ -97,7 +106,7 @@ if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh  ]; then
     . /usr/local/etc/bash_completion.d/git-prompt.sh
     export PS1='\u@\h:\w$(__git_ps1 " (%s)")$'
 else
-    export PS1="\u@\h:\w$"    
+    export PS1="\u@\h:\w$"
 fi
 
 # Java
@@ -144,4 +153,3 @@ alias ll='ls -atlh'
 
 #repo
 #export PATH=$ANDROID_HOME/repo:$PATH
-
