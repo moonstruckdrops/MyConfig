@@ -16,7 +16,6 @@ function remove() {
     fi
 }
 
-
 function start() {
     command=$1
     for DIR in * ; do

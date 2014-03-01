@@ -69,6 +69,9 @@ brew install go --cross-compile-all
 # Install Database
 brew install mysql --enable-memcached
 
+# Install Solr
+brew install solr
+
 # Install JavaDevelopment Tools.
 brew install groovy --invokedynamic
 brew install groovyserv
