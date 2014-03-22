@@ -1,11 +1,11 @@
 ;; Ruby-mode
 (when (require 'ruby-mode nil t)
-  ;; インデントの幅を２から3に変更
-  (setq ruby-indent-level 3)
+  ;; インデントの幅を２
+  (setq ruby-indent-level 2)
   ;; 改行時のインデントを調整する
   (setq ruby-deep-indent-paren-style nil)
   ;; タブ文字を使用する
-  (setq ruby-indent-tabs-mode t)
+  (setq ruby-indent-tabs-mode nil)
   ;; Ruby-modeで編集するファイルを設定
   (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
