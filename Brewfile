@@ -1,0 +1,118 @@
+##############################
+#
+# Initialize
+#
+##############################
+
+## Make sure using latest Homebrew
+update
+
+## Update already-installed formula
+upgrade
+
+## Add Repositories
+tap phinze/homebrew-cask || true
+tap homebrew/versions || true
+tap homebrew/binary || true
+
+##############################
+#
+# Install packages
+#
+##############################
+
+## Shell
+install bash
+install bash-completion
+
+## VCS
+install git
+install gibo
+install tig
+install subversion
+
+## Editor
+install emacs --cocoa --keep-ctags --srgb --with-gnutls --with-x
+
+## Languages
+install rbenv
+install ruby-build --with-openssl
+install go --cross-compile-all
+install groovy --invokedynamic
+
+## Database
+install mysql --enable-memcached
+install solr
+
+## Server
+install tomcat
+
+## Java Build Tools
+install gradle
+install ant
+install ivy
+install maven2
+
+## Utils
+install coreutils
+install tree
+install jq
+install wireshark --with-x
+install groovyserv
+install mosh
+install tmux
+install nkf
+install wget
+
+## Image
+install imagemagick
+
+## DevOps
+install docker
+install boot2docker
+install packer
+
+## Casks 
+install brew-cask
+cask install alfred
+cask install google-japanese-ime
+cask install onepassword
+cask install appcleaner
+cask install thunderbird
+cask install skype
+cask install hipchat
+cask install firefox
+cask install google-chrome
+cask install dropbox
+cask install google-drive
+cask install virtualbox
+cask install vagrant
+cask install sublime-text
+cask install iterm2
+cask install xquartz
+cask install sourcetree
+cask install sequel-pro
+cask install dash
+cask install java
+cask install eclipse-ide
+cask install intellij-idea
+cask install rubymine
+cask install android-studio
+cask install xamarin-studio
+cask install keyremap4macbook
+cask install android-file-transfer
+cask install remote-desktop-connection
+cask install cooviewer
+cask install bathyscaphe
+
+##############################
+#
+# Finalize
+#
+##############################
+
+## Link GUI Application
+linkapps
+
+## Remove outdated versions
+cleanup

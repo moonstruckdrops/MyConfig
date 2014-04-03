@@ -1,103 +1,14 @@
 #!/bin/sh
 
 #=========================
-# Check Dependency App
-#=========================
-# Check Xquartz
-if [ ! `/usr/bin/which 'Xquartz'` ] ;then
-    echo "Please install Xquartz App"
-    echo "From: http://xquartz.macosforge.org/"
-    exit 1
-fi
-
-# Check JAVA_HOME
-if [ ! `echo $JAVA_HOME` ] ;then
-    echo "Please install Java Development Kit"
-    echo "And Set JAVA_HOME"
-    echo "From: http://www.oracle.com/technetwork/java/javase/downloads/index.html"
-    exit 1
-fi
-
-# Check Virtual Box
-if [ ! `/usr/bin/which 'VirtualBox'` ] ;then
-    echo "Please install VirtualBox App"
-    echo "From: https://www.virtualbox.org/"
-    exit 1
-fi
-
-# Check Vagrant
-if [ ! `/usr/bin/which 'vagrant'` ] ;then
-    echo "Please install Vagrant"
-    echo "From: http://www.vagrantup.com/"
-    exit 1
-fi
-
-#=========================
 # Install Homebrew
 #=========================
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 
 #=========================
-# Homebrew's setting
+# Install Packages
 #=========================
-brew tap homebrew/versions
-brew tap homebrew/binary
-
-#==========================
-# Instal Apps with Homebrew
-#==========================
-# Install Bash
-brew install bash
-brew install bash-completion
-
-# Install Git
-brew install git
-
-# Install coreutils
-brew install coreutils
-
-# Install Emacs
-brew install emacs --cocoa --keep-ctags --srgb --with-gnutls --with-x
-
-# Install Ruby
-brew install rbenv
-brew install ruby-build --with-openssl
-
-# Install Golang
-brew install go --cross-compile-all
-
-# Install Database
-brew install mysql --enable-memcached
-
-# Install Solr
-brew install solr
-
-# Install JavaDevelopment Tools.
-brew install groovy --invokedynamic
-brew install groovyserv
-brew Install gradle
-brew install ivy
-brew install maven2
-brew install tomcat
-
-# Install packer
-brew install packer
-
-# Install wireshark
-brew install wireshark --with-x
-curl https://bugs.wireshark.org/bugzilla/attachment.cgi?id=3373 -o ChmodBPF.tar.gz
-tar zxvf ChmodBPF.tar.gz
-
-# Install jq
-brew install jq
-
-# Install tree
-brew install tree
-
-#==========================
-# link for installed app
-#==========================
-brew linkapps
+brew bundle
 
 #==========================
 # Ruby Settings from rbenv
@@ -160,5 +71,3 @@ echo "if which rbenv > /dev/null; then"
 echo "  eval \"$(rbenv init -)\";"
 echo "fi"
 echo ""
-echo "wireshark Settings"
-echo "open ChmodBPF/Install\ ChmodBPF.app"
