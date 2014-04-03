@@ -62,7 +62,7 @@ export ANDROID_HOME=/usr/local/share/android-sdk
 
 
 # TOMCAT
-export CATALINA_HOME='/usr/local/Cellar/tomcat/7.0.42/libexec'
+export CATALINA_HOME='/usr/local/Cellar/tomcat/7.0.47/libexec'
 
 # Golang
 #export GOROOT=$HOME/go/src
@@ -132,8 +132,8 @@ alias ll='ls -atlh'
 
 
 #alias mvn='/usr/local/Cellar/maven2/2.2.1/bin/mvn'
-#alias startup2Tomcat='/usr/local/Cellar/tomcat/7.0.29/libexec/bin/startup.sh'
-#alias shutdown2Tomcat='/usr/local/Cellar/tomcat/7.0.29/libexec/bin/shutdown.sh'
+alias startup2Tomcat='/usr/local/Cellar/tomcat/7.0.47/libexec/bin/startup.sh'
+alias shutdown2Tomcat='/usr/local/Cellar/tomcat/7.0.47/libexec/bin/shutdown.sh'
 
 
 

@@ -131,7 +131,7 @@
 ;; Indent
 ;;====================
 ;; TABの表示幅を4に設定する
-(setq-default tab-width 4)
+(setq-default tab-width 2)
 ;; インデントにタブ文字を使用しない
 (setq-default indent-tabs-mode nil)
 
