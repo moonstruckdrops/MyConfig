@@ -2,9 +2,6 @@
 ;; General
 ;;====================
 ;; サブディレクトリに配置したEmacs-Lispをload-pathを追加する関数を定義する
-;; 以下の2行はEmacs 23より前のバージョンでuser-emacs-directory変数が未定義の為追加
-(when (> emacs-major-version 23)
-  (defvar user-emacs-directory "~/.emacs.d"))
 ;; この関数を使用することで自動的にサブディレクトリもload-pathに追加するようになる
 (defun add-to-load-path (&rest paths)
   (let (path)
@@ -15,14 +12,24 @@
         (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
             (normal-top-level-add-subdirs-to-load-path))))))
 
-;; 起動時のフレームサイズを設定する
-(setq initial-frame-alist
-      (append (list
-        '(width . 177)
-        '(height . 53)
-        )
-        initial-frame-alist))
-(setq default-frame-alist initial-frame-alist)
+;; 画面解像度に応じてフレームサイズを動的に設定する
+;; 文字数の幅に応じてフレームサイズを決定しているので、
+;; 装飾やminibuffer分減算している
+;;(setq initial-frame-alist
+;;      (append (list
+;;        '(width . )
+;;        '(height .)
+;;        )
+;;        initial-frame-alist))
+;;(setq default-frame-alist initial-frame-alist)
+
+
+(when (window-system)
+  (set-frame-size (selected-frame)
+                  (floor (- (/ (x-display-pixel-width) (frame-char-width)) 4))
+                  (floor (- (/ (x-display-pixel-height) (frame-char-height)) 5))))
+;;1280 = 173文字 ( x / 7 = 173) 1211
+;;800 = 49文字 (14)
 
 ;; "yes or no"を"y or n"に
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -195,6 +202,7 @@
 ;;====================
 ;; Utilities(manual-install)
 ;;====================
+(load ".compatible")
 (load ".my_visual")
 (load ".my_keybind")
 (load ".my_backup_restore")
