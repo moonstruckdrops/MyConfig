@@ -86,3 +86,13 @@
 (column-number-mode t)
 ;; ファイルサイズを表示
 (size-indication-mode t)
+
+
+;; ---------------------
+;; 行番号の設定
+;; ---------------------
+(require `linum)
+;; デフォルトでlinum-modeを有効にする
+(global-linum-mode t)
+;; 5桁分の領域を確保して行番号の後にスペースを入れる
+(setq linum-format "%5d ")

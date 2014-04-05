@@ -1,5 +1,15 @@
 ;;====================
-;; General
+;; Compatible
+;;====================
+;; Emacs 23より前のバージョンでuser-emacs-directory変数が未定義の為追加
+(when (> emacs-major-version 23)
+  (defvar user-emacs-directory "~/.emacs.d"))
+;; Emacs24より前のバージョンはパッケージ管理が存在しないので追加する
+(when (< emacs-major-version 24)
+  (load (expand-file-name (concat user-emacs-directory "compatible/package-install.el"))))
+
+;;====================
+;; Bootstrap
 ;;====================
 ;; サブディレクトリに配置したEmacs-Lispをload-pathを追加する関数を定義する
 ;; この関数を使用することで自動的にサブディレクトリもload-pathに追加するようになる
@@ -12,145 +22,21 @@
         (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
             (normal-top-level-add-subdirs-to-load-path))))))
 
-;; 画面解像度に応じてフレームサイズを動的に設定する
-;; 文字数の幅に応じてフレームサイズを決定しているので、
-;; 装飾やminibuffer分減算している
-;;(setq initial-frame-alist
-;;      (append (list
-;;        '(width . )
-;;        '(height .)
-;;        )
-;;        initial-frame-alist))
-;;(setq default-frame-alist initial-frame-alist)
+(add-to-load-path "elisp" "elpa" "conf" "auto-install")
 
+;; init-loader
+(require 'init-loader)
+;; 設定ディレクトリ
+(init-loader-load  (concat user-emacs-directory "conf"))
+;; ログ表示
+(setq init-loader-show-log-after-init t)
 
-(when (window-system)
-  (set-frame-size (selected-frame)
-                  (floor (- (/ (x-display-pixel-width) (frame-char-width)) 4))
-                  (floor (- (/ (x-display-pixel-height) (frame-char-height)) 5))))
-;;1280 = 173文字 ( x / 7 = 173) 1211
-;;800 = 49文字 (14)
-
-;; "yes or no"を"y or n"に
-(fset 'yes-or-no-p 'y-or-n-p)
-;; C-kで行全体を削除
-(setq kill-whole-line t)
-;; *scratch*を消さないようにする
-(defun my-make-scratch (&optional arg)
-  (interactive)
-  (progn
-    ;; "*scratch*" を作成して buffer-list に放り込む
-    (set-buffer (get-buffer-create "*scratch*"))
-    (funcall initial-major-mode)
-    (erase-buffer)
-    (when (and initial-scratch-message (not inhibit-startup-message))
-      (insert initial-scratch-message))
-    (or arg (progn (setq arg 0)
-                   (switch-to-buffer "*scratch*")))
-    (cond ((= arg 0) (message "*scratch* is cleared up."))
-          ((= arg 1) (message "another *scratch* is created")))))
-(add-hook 'kill-buffer-query-functions
-          ;; *scratch* バッファで kill-buffer したら内容を消去するだけにする
-          (lambda ()
-            (if (string= "*scratch*" (buffer-name))
-                (progn (my-make-scratch 0) nil)
-              t)))
-
-;; history から重複したのを消す
-(require 'cl)
-(defun minibuffer-delete-duplicate ()
- (let (list)
-    (dolist (elt (symbol-value minibuffer-history-variable))
-     (unless (member elt list)
-       (push elt list)))
-    (set minibuffer-history-variable (nreverse list))))
-(add-hook 'minibuffer-setup-hook 'minibuffer-delete-duplicate)
-
-;; OSのクリップボードとkill-ringを同期する
-;;(cond (window-system setq x-select-enable-clipboard t))
-(set-frame-font "fontset-bitstreammarugo")
-(set-fontset-font (frame-parameter nil 'font)
-                   'unicode
-                   (font-spec :family "Hiragino Maru Gothic ProN" :size 16)
-                   nil
-                   'append)
-
-;; 矩形選択のコマンドをを複雑にしないようにする
-;; リージョン選択中に C-<enter> で矩形選択モード(矩形の貼付けは同じ)
-(cua-mode t)
-;; C-xが切り取りになるので無効化する
-(setq cua-enable-cua-keys nil)
-;;(global-set-key (kbd "C-w") 'cua-copy-rectangle)
-
-;; emacsclientを起動する
-(require 'server)
-(unless (server-running-p)
-  (server-start))
-
-;; emacsclientの終了をC-x kに変更する
-(add-hook 'server-switch-hook
-          (lambda ()
-            (when (current-local-map)
-                (use-local-map (copy-keymap (current-local-map))))
-            (when server-buffer-clients
-              (local-set-key (kbd "C-x k") 'server-edit))))
-
-;; scratchの初期メッセージ消去
-(setq initial-scratch-message "")
-
-
-;;====================
-;; Language & Character encoding
-;;====================
-;; 言語を日本語にする
-(set-language-environment 'Japanese)
-;; ファイルの文字コードをUTF-8
-(prefer-coding-system 'utf-8)
-;; ファイル名の文字コードを設定する
-;; Mac,Windows,Linuxでは取り扱いが異なる(Linuxはそのままでよいが,MacとWindowsは扱いが異なる為)
-(when (eq system-type 'darwin)
-  (require 'ucs-normalize)
-  (set-file-name-coding-system 'utf-8-hfs)
-  (setq locale-coding-system 'utf-8-hfs))
-(when (eq window-system 'w32)
-  (require 'ucs-normalize)
-  (set-file-name-coding-system 'cp932)
-  (setq locale-coding-system 'cp932))
-
-;;(let* ((size 14)
-;;         (asciifont "Menlo")
-;;         (jpfont "Hiragino Maru Gothic ProN")
-;;         (h (* size 10))
-;;         (fontspec)
-;;         (jp-fontspec))
-;;    (set-face-attribute 'default nil :family asciifont :height h)
-;;    (setq fontspec (font-spec :family asciifont))
-;;    (setq jp-fontspec (font-spec :family jpfont))
-;;    (set-fontset-font nil 'japanese-jisx0208 jp-fontspec)
-;;    (set-fontset-font nil 'japanese-jisx0212 jp-fontspec)
-;;    (set-fontset-font nil 'japanese-jisx0213-1 jp-fontspec)
-;;    (set-fontset-font nil 'japanese-jisx0213-2 jp-fontspec)
-;;    (set-fontset-font nil '(#x0080 . #x024F) fontspec)
-;;    (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
-
-
-;;====================
-;; Indent
-;;====================
-;; TABの表示幅を4に設定する
-(setq-default tab-width 2)
-;; インデントにタブ文字を使用しない
-(setq-default indent-tabs-mode nil)
-
-;;====================
-;; Files(use-mode)
-;;====================
 
 ;;====================
 ;; Utilities(General)
 ;;====================
-;; Emacs Lispが置いてあるpathを指定する
-(add-to-load-path "elisp" "elpa" "conf" "auto-install")
+
+
 
 ;; auto-installの設定
 ;; wgetコマンドが見つかった場合は以下の設定を実行する
@@ -164,7 +50,8 @@
 ;;   sudo ln -s /opt/local/bin/wget /usr/bin/wget
 (when (executable-find "wget")
   (require `auto-install)
-  (setq auto-install-directory "~/.emacs.d/elisp")
+  (setq auto-install-directory
+        (expand-file-name (concat user-emacs-directory "elisp")))
   (auto-install-update-emacswiki-package-name t)
 ;;  (setq url-proxy `(("http" . "localhost:8080")))
   (auto-install-compatibility-setup)
@@ -180,32 +67,8 @@
                  "-m" message
                  "-a" app))
 
-;;====================
-;; Utilities(auto-install)
-;;====================
-;; line-num
-(require `linum)
-;; デフォルトでlinum-modeを有効にする
-(global-linum-mode t)
-;; 5桁分の領域を確保して行番号の後にスペースを入れる
-(setq linum-format "%5d ")
 
-;;====================
-;; Utilities(ELPA)
-;;====================
-;; ELPAを使用するpackage.elを読み込む
-(setq package-archives '(("ELPA" . "http://tromey.com/elpa/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("gnu" . "http://elpa.gnu.org/packages/")))
 
-;;====================
-;; Utilities(manual-install)
-;;====================
-(load ".compatible")
-(load ".my_visual")
-(load ".my_keybind")
-(load ".my_backup_restore")
 
 ;;(require 'navi2ch)
 ;;(load ".twitter")
@@ -290,7 +153,10 @@
 ;; markdown
 ;;====================
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
-(setq auto-mode-alist (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
+(setq auto-mode-alist
+      (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
+
+
 
 (dolist (dir (list
               "/sbin"
