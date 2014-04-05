@@ -57,7 +57,6 @@ install maven2
 install coreutils
 install tree
 install jq
-install wireshark --with-x
 install groovyserv
 install mosh
 install tmux
@@ -89,6 +88,7 @@ cask install virtualbox
 cask install vagrant
 cask install sublime-text
 cask install iterm2
+cask install wireshark
 cask install xquartz
 cask install sourcetree
 cask install sequel-pro
