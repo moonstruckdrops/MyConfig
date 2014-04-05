@@ -7,9 +7,9 @@
 ;;	Tsuyoshi CHO <Tsuyoshi.CHO+develop@Gmail.com>
 ;;	Alberto Garcia <agarcia@igalia.com>
 ;; Created: Sep 4, 2007
-;; Version: 20130616.1818
+;; Version: 20140330.852
 ;; X-Original-Version: HEAD
-;; Identity: $Id: da70b7ddbf5e2fbbfe4c0dd273707c43de5feed8 $
+;; Identity: $Id: 0c8ac4c554e56d78958d6bda7beabd7fc1b86f60 $
 ;; Keywords: twitter web
 ;; URL: http://twmode.sf.net/
 
@@ -85,7 +85,7 @@
 (require 'url)
 
 (defconst twittering-mode-version "HEAD")
-(defconst twittering-mode-identity "$Id: da70b7ddbf5e2fbbfe4c0dd273707c43de5feed8 $")
+(defconst twittering-mode-identity "$Id: 0c8ac4c554e56d78958d6bda7beabd7fc1b86f60 $")
 (defvar twittering-api-host "api.twitter.com")
 (defvar twittering-api-search-host "search.twitter.com")
 (defvar twittering-web-host "twitter.com")
@@ -1157,39 +1157,59 @@ SCHEME must be \"http\" or \"https\"."
 servers on SSL.")
 
 (defconst twittering-ca-cert-list
-  '(;; Equifax Secure Certificate Authority
-    ;; subject= /C=US/O=Equifax/OU=Equifax Secure Certificate Authority
-    ;; SHA1 Fingerprint=D2:32:09:AD:23:D3:14:23:21:74:E4:0D:7F:9D:62:13:97:86:63:3A
-    ;; Retrieved from: https://www.geotrust.com/resources/root-certificates/index.html
-    ;; URL: https://www.geotrust.com/resources/root_certificates/certificates/Equifax_Secure_Certificate_Authority.cer
-    ;; for www.googleapis.com
-    "-----BEGIN CERTIFICATE-----
-MIIDIDCCAomgAwIBAgIENd70zzANBgkqhkiG9w0BAQUFADBOMQswCQYDVQQGEwJV
-UzEQMA4GA1UEChMHRXF1aWZheDEtMCsGA1UECxMkRXF1aWZheCBTZWN1cmUgQ2Vy
-dGlmaWNhdGUgQXV0aG9yaXR5MB4XDTk4MDgyMjE2NDE1MVoXDTE4MDgyMjE2NDE1
-MVowTjELMAkGA1UEBhMCVVMxEDAOBgNVBAoTB0VxdWlmYXgxLTArBgNVBAsTJEVx
-dWlmYXggU2VjdXJlIENlcnRpZmljYXRlIEF1dGhvcml0eTCBnzANBgkqhkiG9w0B
-AQEFAAOBjQAwgYkCgYEAwV2xWGcIYu6gmi0fCG2RFGiYCh7+2gRvE4RiIcPRfM6f
-BeC4AfBONOziipUEZKzxa1NfBbPLZ4C/QgKO/t0BCezhABRP/PvwDN1Dulsr4R+A
-cJkVV5MW8Q+XarfCaCMczE1ZMKxRHjuvK9buY0V7xdlfUNLjUA86iOe/FP3gx7kC
-AwEAAaOCAQkwggEFMHAGA1UdHwRpMGcwZaBjoGGkXzBdMQswCQYDVQQGEwJVUzEQ
-MA4GA1UEChMHRXF1aWZheDEtMCsGA1UECxMkRXF1aWZheCBTZWN1cmUgQ2VydGlm
-aWNhdGUgQXV0aG9yaXR5MQ0wCwYDVQQDEwRDUkwxMBoGA1UdEAQTMBGBDzIwMTgw
-ODIyMTY0MTUxWjALBgNVHQ8EBAMCAQYwHwYDVR0jBBgwFoAUSOZo+SvSspXXR9gj
-IBBPM5iQn9QwHQYDVR0OBBYEFEjmaPkr0rKV10fYIyAQTzOYkJ/UMAwGA1UdEwQF
-MAMBAf8wGgYJKoZIhvZ9B0EABA0wCxsFVjMuMGMDAgbAMA0GCSqGSIb3DQEBBQUA
-A4GBAFjOKer89961zgK5F7WF0bnj4JXMJTENAKaSbn+2kmOeUJXRmm/kEd5jhW6Y
-7qj/WsjTVbJmcVfewCHrPSqnI0kBBIZCe/zuf6IWUrVnZ9NA2zsmWLIodz2uFHdh
-1voqZiegDfqnc1zqcPGUIWVEX/r87yloqaKHee9570+sB3c4
+  '(
+;; #BEGIN-CERTIFICATE
+;; Verisign Class 3 Public Primary Certification Authority
+;; issuer= /C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority
+;; subject= /C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority
+;; serial=70BAE41D10D92934B638CA7B03CCBABF
+;; SHA1 Fingerprint=74:2C:31:92:E6:07:E4:24:EB:45:49:54:2B:E1:BB:C5:3E:61:74:E2
+;; notBefore=Jan 29 00:00:00 1996 GMT
+;; notAfter=Aug  1 23:59:59 2028 GMT
+"-----BEGIN CERTIFICATE-----
+MIICPDCCAaUCEHC65B0Q2Sk0tjjKewPMur8wDQYJKoZIhvcNAQECBQAwXzELMAkG
+A1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMTcwNQYDVQQLEy5DbGFz
+cyAzIFB1YmxpYyBQcmltYXJ5IENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTk2
+MDEyOTAwMDAwMFoXDTI4MDgwMTIzNTk1OVowXzELMAkGA1UEBhMCVVMxFzAVBgNV
+BAoTDlZlcmlTaWduLCBJbmMuMTcwNQYDVQQLEy5DbGFzcyAzIFB1YmxpYyBQcmlt
+YXJ5IENlcnRpZmljYXRpb24gQXV0aG9yaXR5MIGfMA0GCSqGSIb3DQEBAQUAA4GN
+ADCBiQKBgQDJXFme8huKARS0EN8EQNvjV69qRUCPhAwL0TPZ2RHP7gJYHyX3KqhE
+BarsAx94f56TuZoAqiN91qyFomNFx3InzPRMxnVx0jnvT0Lwdd8KkMaOIG+YD/is
+I19wKTakyYbnsZogy1Olhec9vn2a/iRFM9x2Fe0PonFkTGUugWhFpwIDAQABMA0G
+CSqGSIb3DQEBAgUAA4GBALtMEivPLCYATxQT3ab7/AoRhIzzKBxnki98tsX63/Do
+lbwdj2wsqFHMc9ikwFPwTtYmwHYBV4GSXiHx0bH/59AhWM1pF+NEHJwZRDmJXNyc
+AA9WjQKZ7aKQRUzkuxCkPfAyAw7xzvjoyVGM5mKf5p/AfbdynMk2OmufTqj/ZA1k
 -----END CERTIFICATE-----
 "
-    ;; VeriSign Class 3 Public Primary CA - G2
-    ;; subject= /C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority - G2/OU=(c) 1998 VeriSign, Inc. - For authorized use only/OU=VeriSign Trust Network
-    ;; SHA1 Fingerprint=85:37:1C:A6:E5:50:14:3D:CE:28:03:47:1B:DE:3A:09:E8:F8:77:0F
-    ;; Retrieved from: https://www.verisign.com/support/roots.html
-    ;; URL: https://www.verisign.com/repository/roots/root-certificates/PCA-3G2.pem
-    ;; for api.twitter.com
-    "-----BEGIN CERTIFICATE-----
+;; issuer= /C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority
+;; subject= /C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority
+;; serial=3C9131CB1FF6D01B0E9AB8D044BF12BE
+;; SHA1 Fingerprint=A1:DB:63:93:91:6F:17:E4:18:55:09:40:04:15:C7:02:40:B0:AE:6B
+;; notBefore=Jan 29 00:00:00 1996 GMT
+;; notAfter=Aug  2 23:59:59 2028 GMT
+"-----BEGIN CERTIFICATE-----
+MIICPDCCAaUCEDyRMcsf9tAbDpq40ES/Er4wDQYJKoZIhvcNAQEFBQAwXzELMAkG
+A1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMTcwNQYDVQQLEy5DbGFz
+cyAzIFB1YmxpYyBQcmltYXJ5IENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTk2
+MDEyOTAwMDAwMFoXDTI4MDgwMjIzNTk1OVowXzELMAkGA1UEBhMCVVMxFzAVBgNV
+BAoTDlZlcmlTaWduLCBJbmMuMTcwNQYDVQQLEy5DbGFzcyAzIFB1YmxpYyBQcmlt
+YXJ5IENlcnRpZmljYXRpb24gQXV0aG9yaXR5MIGfMA0GCSqGSIb3DQEBAQUAA4GN
+ADCBiQKBgQDJXFme8huKARS0EN8EQNvjV69qRUCPhAwL0TPZ2RHP7gJYHyX3KqhE
+BarsAx94f56TuZoAqiN91qyFomNFx3InzPRMxnVx0jnvT0Lwdd8KkMaOIG+YD/is
+I19wKTakyYbnsZogy1Olhec9vn2a/iRFM9x2Fe0PonFkTGUugWhFpwIDAQABMA0G
+CSqGSIb3DQEBBQUAA4GBABByUqkFFBkyCEHwxWsKzH4PIRnN5GfcX6kb5sroc50i
+2JhucwNhkcV8sEVAbkSdjbCxlnRhLQ2pRdKkkirWmnWXbj9T/UWZYB2oK0z5XqcJ
+2HUw19JlYD1n1khVdWk/kfVIC0dpImmClr7JyDiGSnoscxlIaU5rfGW/D/xwzoiQ
+-----END CERTIFICATE-----
+"
+;; Verisign Class 3 Public Primary Certification Authority - G2
+;; issuer= /C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority - G2/OU=(c) 1998 VeriSign, Inc. - For authorized use only/OU=VeriSign Trust Network
+;; subject= /C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority - G2/OU=(c) 1998 VeriSign, Inc. - For authorized use only/OU=VeriSign Trust Network
+;; serial=7DD9FE07CFA81EB7107967FBA78934C6
+;; SHA1 Fingerprint=85:37:1C:A6:E5:50:14:3D:CE:28:03:47:1B:DE:3A:09:E8:F8:77:0F
+;; notBefore=May 18 00:00:00 1998 GMT
+;; notAfter=Aug  1 23:59:59 2028 GMT
+"-----BEGIN CERTIFICATE-----
 MIIDAjCCAmsCEH3Z/gfPqB63EHln+6eJNMYwDQYJKoZIhvcNAQEFBQAwgcExCzAJ
 BgNVBAYTAlVTMRcwFQYDVQQKEw5WZXJpU2lnbiwgSW5jLjE8MDoGA1UECxMzQ2xh
 c3MgMyBQdWJsaWMgUHJpbWFyeSBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eSAtIEcy
@@ -1209,33 +1229,216 @@ F6YM40AIOw7n60RzKprxaZLvcRTDOaxxp5EJb+RxBrO6WVcmeQD2+A2iMzAo1KpY
 oJ2daZH9
 -----END CERTIFICATE-----
 "
-    ;; GeoTrust Global CA
-    ;; subject= /C=US/O=GeoTrust Inc./CN=GeoTrust Global CA
-    ;; SHA1 Fingerprint=DE:28:F4:A4:FF:E5:B9:2F:A3:C5:03:D1:A3:49:A7:F9:96:2A:82:12
-    ;; Retrieved from: https://www.geotrust.com/resources/root-certificates/index.html
-    ;; URL: https://www.geotrust.com/resources/root_certificates/certificates/GeoTrust_Global_CA.cer
-    ;; for search.twitter.com
-    "-----BEGIN CERTIFICATE-----
-MIIDVDCCAjygAwIBAgIDAjRWMA0GCSqGSIb3DQEBBQUAMEIxCzAJBgNVBAYTAlVT
-MRYwFAYDVQQKEw1HZW9UcnVzdCBJbmMuMRswGQYDVQQDExJHZW9UcnVzdCBHbG9i
-YWwgQ0EwHhcNMDIwNTIxMDQwMDAwWhcNMjIwNTIxMDQwMDAwWjBCMQswCQYDVQQG
-EwJVUzEWMBQGA1UEChMNR2VvVHJ1c3QgSW5jLjEbMBkGA1UEAxMSR2VvVHJ1c3Qg
-R2xvYmFsIENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2swYYzD9
-9BcjGlZ+W988bDjkcbd4kdS8odhM+KhDtgPpTSEHCIjaWC9mOSm9BXiLnTjoBbdq
-fnGk5sRgprDvgOSJKA+eJdbtg/OtppHHmMlCGDUUna2YRpIuT8rxh0PBFpVXLVDv
-iS2Aelet8u5fa9IAjbkU+BQVNdnARqN7csiRv8lVK83Qlz6cJmTM386DGXHKTubU
-1XupGc1V3sjs0l44U+VcT4wt/lAjNvxm5suOpDkZALeVAjmRCw7+OC7RHQWa9k0+
-bw8HHa8sHo9gOeL6NlMTOdReJivbPagUvTLrGAMoUgRx5aszPeE4uwc2hGKceeoW
-MPRfwCvocWvk+QIDAQABo1MwUTAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBTA
-ephojYn7qwVkDBF9qn1luMrMTjAfBgNVHSMEGDAWgBTAephojYn7qwVkDBF9qn1l
-uMrMTjANBgkqhkiG9w0BAQUFAAOCAQEANeMpauUvXVSOKVCUn5kaFOSPeCpilKIn
-Z57QzxpeR+nBsqTP3UEaBU6bS+5Kb1VSsyShNwrrZHYqLizz/Tt1kL/6cdjHPTfS
-tQWVYrmm3ok9Nns4d0iXrKYgjy6myQzCsplFAMfOEVEiIuCl6rYVSAlk6l5PdPcF
-PseKUgzbFbS9bZvlxrFUaKnjaZC2mqUPuLk/IH2uSrW4nOQdtqvmlKXBx4Ot2/Un
-hw4EbNX/3aBd7YdStysVAq45pmp06drE57xNNB6pXE0zX5IJL4hmXXeXxx12E6nV
-5fEWCRE11azbJHFwLJhWC9kXtNHjUStedejV0NxPNO3CBWaAocvmMw==
+;; Verisign Class 3 Public Primary Certification Authority - G3
+;; issuer= /C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 1999 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 3 Public Primary Certification Authority - G3
+;; subject= /C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 1999 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 3 Public Primary Certification Authority - G3
+;; serial=9B7E0649A33E62B9D5EE90487129EF57
+;; SHA1 Fingerprint=13:2D:0D:45:53:4B:69:97:CD:B2:D5:C3:39:E2:55:76:60:9B:5C:C6
+;; notBefore=Oct  1 00:00:00 1999 GMT
+;; notAfter=Jul 16 23:59:59 2036 GMT
+"-----BEGIN CERTIFICATE-----
+MIIEGjCCAwICEQCbfgZJoz5iudXukEhxKe9XMA0GCSqGSIb3DQEBBQUAMIHKMQsw
+CQYDVQQGEwJVUzEXMBUGA1UEChMOVmVyaVNpZ24sIEluYy4xHzAdBgNVBAsTFlZl
+cmlTaWduIFRydXN0IE5ldHdvcmsxOjA4BgNVBAsTMShjKSAxOTk5IFZlcmlTaWdu
+LCBJbmMuIC0gRm9yIGF1dGhvcml6ZWQgdXNlIG9ubHkxRTBDBgNVBAMTPFZlcmlT
+aWduIENsYXNzIDMgUHVibGljIFByaW1hcnkgQ2VydGlmaWNhdGlvbiBBdXRob3Jp
+dHkgLSBHMzAeFw05OTEwMDEwMDAwMDBaFw0zNjA3MTYyMzU5NTlaMIHKMQswCQYD
+VQQGEwJVUzEXMBUGA1UEChMOVmVyaVNpZ24sIEluYy4xHzAdBgNVBAsTFlZlcmlT
+aWduIFRydXN0IE5ldHdvcmsxOjA4BgNVBAsTMShjKSAxOTk5IFZlcmlTaWduLCBJ
+bmMuIC0gRm9yIGF1dGhvcml6ZWQgdXNlIG9ubHkxRTBDBgNVBAMTPFZlcmlTaWdu
+IENsYXNzIDMgUHVibGljIFByaW1hcnkgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkg
+LSBHMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMu6nFL8eB8aHm8b
+N3O9+MlrlBIwT/A2R/XQkQr1F8ilYcEWQE37imGQ5XYgwREGfassbqb1EUGO+i2t
+KmFZpGcmTNDovFJbcCAEWNF6yaRpvIMXZK0Fi7zQWM6NjPXr8EJJC52XJ2cybuGu
+kxUccLwgTS8Y3pKI6GyFVxEa6X7jJhFUokWWVYPKMIno3Nij7SqAP395ZVc+FSBm
+CC+Vk7+qRy+oRpfwEuL+wgorUeZ25rdGt+INpsyow0xZVYnm6FNcHOqd8GIWC6fJ
+Xwzw3sJ2zq/3avL6QaaiMxTJ5Xpj055iN9WFZZ4O5lMkdBteHRJTW8cs54NJOxWu
+imi5V5cCAwEAATANBgkqhkiG9w0BAQUFAAOCAQEAERSWwauSCPc/L8my/uRan2Te
+2yFPhpk0djZX3dAVL8WtfxUfN2JzPtTnX84XA9s1+ivbrmAJXx5fj267Cz3qWhMe
+DGBvtcC1IyIuBwvLqXTLR7sdwdela8wv0kL9Sd2nic9TutoAWii/gt/4uhMdUIaC
+/Y4wjylGsB49Ndo4YhYYSq3mtlFs3q9i6wHQHiT+eo8SGhJouPtmmRQURVyu565p
+F4ErWjfJXir0xuKhXFSbplQAz/DxwceYMBo7Nhbbo27q/a2ywtrvAkcTisDxszGt
+TxzhT5yvDwyd93gN2PQ1VoDat20Xj50egWTh/sVFuq1ruQp6Tk9LhO5L8X3dEQ==
 -----END CERTIFICATE-----
-"))
+"
+;; Verisign Class 4 Public Primary Certification Authority - G3
+;; issuer= /C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 1999 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 4 Public Primary Certification Authority - G3
+;; subject= /C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 1999 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 4 Public Primary Certification Authority - G3
+;; serial=ECA0A78B6E756A01CFC47CCC2F945ED7
+;; SHA1 Fingerprint=C8:EC:8C:87:92:69:CB:4B:AB:39:E9:8D:7E:57:67:F3:14:95:73:9D
+;; notBefore=Oct  1 00:00:00 1999 GMT
+;; notAfter=Jul 16 23:59:59 2036 GMT
+"-----BEGIN CERTIFICATE-----
+MIIEGjCCAwICEQDsoKeLbnVqAc/EfMwvlF7XMA0GCSqGSIb3DQEBBQUAMIHKMQsw
+CQYDVQQGEwJVUzEXMBUGA1UEChMOVmVyaVNpZ24sIEluYy4xHzAdBgNVBAsTFlZl
+cmlTaWduIFRydXN0IE5ldHdvcmsxOjA4BgNVBAsTMShjKSAxOTk5IFZlcmlTaWdu
+LCBJbmMuIC0gRm9yIGF1dGhvcml6ZWQgdXNlIG9ubHkxRTBDBgNVBAMTPFZlcmlT
+aWduIENsYXNzIDQgUHVibGljIFByaW1hcnkgQ2VydGlmaWNhdGlvbiBBdXRob3Jp
+dHkgLSBHMzAeFw05OTEwMDEwMDAwMDBaFw0zNjA3MTYyMzU5NTlaMIHKMQswCQYD
+VQQGEwJVUzEXMBUGA1UEChMOVmVyaVNpZ24sIEluYy4xHzAdBgNVBAsTFlZlcmlT
+aWduIFRydXN0IE5ldHdvcmsxOjA4BgNVBAsTMShjKSAxOTk5IFZlcmlTaWduLCBJ
+bmMuIC0gRm9yIGF1dGhvcml6ZWQgdXNlIG9ubHkxRTBDBgNVBAMTPFZlcmlTaWdu
+IENsYXNzIDQgUHVibGljIFByaW1hcnkgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkg
+LSBHMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAK3LpRFpxlmr8Y+1
+GQ9Wzsy1HyDkniYlS+BzZYlZ3tCD5PUPtbut8XzoIfzk6AzufEUiGXaStBO3IFsJ
++mGuqPKljYXCKtbeZjbSmwL0qJJgfJxptI8kHtCGUvYynEFYHiK9zUVilQhu0Gbd
+U6LM8BDcVHOLBKFGMzNcF0C5nk3T875Vg+ixiY5afJqWIpA7iCXy0lOIAgwLePLm
+NxdLMEYH5IBtptiWLugs+BGzOA1mppvqySNb247i8xOOGlktqgLw7KSHZtzBP/XY
+ufTsgsbSPZUd5cBPhMnZo0QoBmrXRazwa2rvTl/4EYIeOGM0ZlDUPpNz+jDDZq3/
+ky2X7wMCAwEAATANBgkqhkiG9w0BAQUFAAOCAQEAj/ola09b5KROJ1WrIhVZPMq1
+CtRK26vdoV9TxaBXOcLORyu+OshWv8LZJxA6sQU8wHcxuzrTBXttmhwwjIDLk5Mq
+g6sFUYICABFna/OIYUdfA5PVWw3g8dShMjWFsjrbsIKr0csKvE+MW8VLADsfKoKm
+fjaF3H48ZwC15DtS4KjrXRX5xm3wrR0OhbepmnMUWluPQSjA1egtTaRezarZ7c7c
+2NU8Qh0XwRJdRTjDOPP8hS6DRkiy1yBfkjaP53kPmF6Z6PDQpLv1U70qzlmwr25/
+bLvSHgCwIe34QWKCudiyxLtGUPMxxY8BqHTr9Xgn2uf3ZkPznoM+IKrDNWCRzg==
+-----END CERTIFICATE-----
+"
+;; VeriSign Class 3 Public Primary Certification Authority - G5
+;; issuer= /C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2006 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 3 Public Primary Certification Authority - G5
+;; subject= /C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2006 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 3 Public Primary Certification Authority - G5
+;; serial=18DAD19E267DE8BB4A2158CDCC6B3B4A
+;; SHA1 Fingerprint=4E:B6:D5:78:49:9B:1C:CF:5F:58:1E:AD:56:BE:3D:9B:67:44:A5:E5
+;; notBefore=Nov  8 00:00:00 2006 GMT
+;; notAfter=Jul 16 23:59:59 2036 GMT
+"-----BEGIN CERTIFICATE-----
+MIIE0zCCA7ugAwIBAgIQGNrRniZ96LtKIVjNzGs7SjANBgkqhkiG9w0BAQUFADCB
+yjELMAkGA1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMR8wHQYDVQQL
+ExZWZXJpU2lnbiBUcnVzdCBOZXR3b3JrMTowOAYDVQQLEzEoYykgMjAwNiBWZXJp
+U2lnbiwgSW5jLiAtIEZvciBhdXRob3JpemVkIHVzZSBvbmx5MUUwQwYDVQQDEzxW
+ZXJpU2lnbiBDbGFzcyAzIFB1YmxpYyBQcmltYXJ5IENlcnRpZmljYXRpb24gQXV0
+aG9yaXR5IC0gRzUwHhcNMDYxMTA4MDAwMDAwWhcNMzYwNzE2MjM1OTU5WjCByjEL
+MAkGA1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMR8wHQYDVQQLExZW
+ZXJpU2lnbiBUcnVzdCBOZXR3b3JrMTowOAYDVQQLEzEoYykgMjAwNiBWZXJpU2ln
+biwgSW5jLiAtIEZvciBhdXRob3JpemVkIHVzZSBvbmx5MUUwQwYDVQQDEzxWZXJp
+U2lnbiBDbGFzcyAzIFB1YmxpYyBQcmltYXJ5IENlcnRpZmljYXRpb24gQXV0aG9y
+aXR5IC0gRzUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCvJAgIKXo1
+nmAMqudLO07cfLw8RRy7K+D+KQL5VwijZIUVJ/XxrcgxiV0i6CqqpkKzj/i5Vbex
+t0uz/o9+B1fs70PbZmIVYc9gDaTY3vjgw2IIPVQT60nKWVSFJuUrjxuf6/WhkcIz
+SdhDY2pSS9KP6HBRTdGJaXvHcPaz3BJ023tdS1bTlr8Vd6Gw9KIl8q8ckmcY5fQG
+BO+QueQA5N06tRn/Arr0PO7gi+s3i+z016zy9vA9r911kTMZHRxAy3QkGSGT2RT+
+rCpSx4/VBEnkjWNHiDxpg8v+R70rfk/Fla4OndTRQ8Bnc+MUCH7lP59zuDMKz10/
+NIeWiu5T6CUVAgMBAAGjgbIwga8wDwYDVR0TAQH/BAUwAwEB/zAOBgNVHQ8BAf8E
+BAMCAQYwbQYIKwYBBQUHAQwEYTBfoV2gWzBZMFcwVRYJaW1hZ2UvZ2lmMCEwHzAH
+BgUrDgMCGgQUj+XTGoasjY5rw8+AatRIGCx7GS4wJRYjaHR0cDovL2xvZ28udmVy
+aXNpZ24uY29tL3ZzbG9nby5naWYwHQYDVR0OBBYEFH/TZafC3ey78DAJ80M5+gKv
+MzEzMA0GCSqGSIb3DQEBBQUAA4IBAQCTJEowX2LP2BqYLz3q3JktvXf2pXkiOOzE
+p6B4Eq1iDkVwZMXnl2YtmAl+X6/WzChl8gGqCBpH3vn5fJJaCGkgDdk+bW48DW7Y
+5gaRQBi5+MHt39tBquCWIMnNZBU4gcmU7qKEKQsTb47bDN0lAtukixlE0kF6BWlK
+WE9gyn6CagsCqiUXObXbf+eEZSqVir2G3l6BFoMtEMze/aiCKm0oHw0LxOXnGiYZ
+4fQRbxC1lfznQgUy286dUV4otp6F01vvpX1FQHKOtw5rDgb7MzVIcbidJ4vEZV8N
+hnacRHr2lVz2XTIIM6RUthg/aFzyQkqFOFSDX9HoLPKsEdao7WNq
+-----END CERTIFICATE-----
+"
+;; VeriSign Universal Root Certification Authority
+;; issuer= /C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2008 VeriSign, Inc. - For authorized use only/CN=VeriSign Universal Root Certification Authority
+;; subject= /C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2008 VeriSign, Inc. - For authorized use only/CN=VeriSign Universal Root Certification Authority
+;; serial=401AC46421B31321030EBBE4121AC51D
+;; SHA1 Fingerprint=36:79:CA:35:66:87:72:30:4D:30:A5:FB:87:3B:0F:A7:7B:B7:0D:54
+;; notBefore=Apr  2 00:00:00 2008 GMT
+;; notAfter=Dec  1 23:59:59 2037 GMT
+"-----BEGIN CERTIFICATE-----
+MIIEuTCCA6GgAwIBAgIQQBrEZCGzEyEDDrvkEhrFHTANBgkqhkiG9w0BAQsFADCB
+vTELMAkGA1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMR8wHQYDVQQL
+ExZWZXJpU2lnbiBUcnVzdCBOZXR3b3JrMTowOAYDVQQLEzEoYykgMjAwOCBWZXJp
+U2lnbiwgSW5jLiAtIEZvciBhdXRob3JpemVkIHVzZSBvbmx5MTgwNgYDVQQDEy9W
+ZXJpU2lnbiBVbml2ZXJzYWwgUm9vdCBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eTAe
+Fw0wODA0MDIwMDAwMDBaFw0zNzEyMDEyMzU5NTlaMIG9MQswCQYDVQQGEwJVUzEX
+MBUGA1UEChMOVmVyaVNpZ24sIEluYy4xHzAdBgNVBAsTFlZlcmlTaWduIFRydXN0
+IE5ldHdvcmsxOjA4BgNVBAsTMShjKSAyMDA4IFZlcmlTaWduLCBJbmMuIC0gRm9y
+IGF1dGhvcml6ZWQgdXNlIG9ubHkxODA2BgNVBAMTL1ZlcmlTaWduIFVuaXZlcnNh
+bCBSb290IENlcnRpZmljYXRpb24gQXV0aG9yaXR5MIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEAx2E3XrEBNNti1xWb/1hajCMj1mCOkdeQmIN65lgZOIzF
+9uVkhbSicfvtvbnazU0AtMgtc6XHaXGVHzk8skQHnOgO+k1KxCHfKWGPMiJhgsWH
+H26MfF8WIFFE0XBPV+rjHOPMee5Y2A7Cs0WTwCznmhcrewA3ekEzeOEz4vMQGn+H
+LL729fdC4uW/h2KJXwBL38Xd5HVEMkE6HnFuacsLdUYI0crSK5XQz/u5QGtkjFdN
+/BMReYTtXlT2NJ8IAfMQJQYXStrxHXpma5hgZqTZ79IugvHw7wnqRMkVauIDbjPT
+rJ9VAMf2CGqUuV/c4DPxhGD5WycRtPwW8rtWaoAljQIDAQABo4GyMIGvMA8GA1Ud
+EwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMG0GCCsGAQUFBwEMBGEwX6FdoFsw
+WTBXMFUWCWltYWdlL2dpZjAhMB8wBwYFKw4DAhoEFI/l0xqGrI2Oa8PPgGrUSBgs
+exkuMCUWI2h0dHA6Ly9sb2dvLnZlcmlzaWduLmNvbS92c2xvZ28uZ2lmMB0GA1Ud
+DgQWBBS2d/ppSEefUxLVwuoHMnYH0ZcHGTANBgkqhkiG9w0BAQsFAAOCAQEASvj4
+sAPmLGd75JR3Y8xuTPl9Dg3cyLk1uXBPY/ok+myDjEedO2Pzmvl2MpWRsXe8rJq+
+seQxIcaBlVZaDrHC1LGmWazxY8u4TB1ZkErvkBYoH1quEPuBUDgMbMzxPcP1Y+Oz
+4yHJJDnp/RVmRvQbEdBNc6N9Rvk97ahfYtTxP/jgdFcrGJ2BtMQo2pSXpXDrrB2+
+BxHw1dvd5Yzw1TKwg+ZX4o+/vqGqvz0dtdQ46tewXDpPaj+PwGZsY6rp2aQW9IHR
+lRQOfc2VNNnSj3BzgXucfr2YYdhFh5iQxeuGMMY1v/D/w1WIg0vvBZIGcfK4mJO3
+7M2CYfE45k+XmCpajQ==
+-----END CERTIFICATE-----
+"
+;; VeriSign Class 3 Public Primary Certification Authority - G4
+;; issuer= /C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2007 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 3 Public Primary Certification Authority - G4
+;; subject= /C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2007 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 3 Public Primary Certification Authority - G4
+;; serial=2F80FE238C0E220F486712289187ACB3
+;; SHA1 Fingerprint=22:D5:D8:DF:8F:02:31:D1:8D:F7:9D:B7:CF:8A:2D:64:C9:3F:6C:3A
+;; notBefore=Nov  5 00:00:00 2007 GMT
+;; notAfter=Jan 18 23:59:59 2038 GMT
+"-----BEGIN CERTIFICATE-----
+MIIDhDCCAwqgAwIBAgIQL4D+I4wOIg9IZxIokYesszAKBggqhkjOPQQDAzCByjEL
+MAkGA1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMR8wHQYDVQQLExZW
+ZXJpU2lnbiBUcnVzdCBOZXR3b3JrMTowOAYDVQQLEzEoYykgMjAwNyBWZXJpU2ln
+biwgSW5jLiAtIEZvciBhdXRob3JpemVkIHVzZSBvbmx5MUUwQwYDVQQDEzxWZXJp
+U2lnbiBDbGFzcyAzIFB1YmxpYyBQcmltYXJ5IENlcnRpZmljYXRpb24gQXV0aG9y
+aXR5IC0gRzQwHhcNMDcxMTA1MDAwMDAwWhcNMzgwMTE4MjM1OTU5WjCByjELMAkG
+A1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMR8wHQYDVQQLExZWZXJp
+U2lnbiBUcnVzdCBOZXR3b3JrMTowOAYDVQQLEzEoYykgMjAwNyBWZXJpU2lnbiwg
+SW5jLiAtIEZvciBhdXRob3JpemVkIHVzZSBvbmx5MUUwQwYDVQQDEzxWZXJpU2ln
+biBDbGFzcyAzIFB1YmxpYyBQcmltYXJ5IENlcnRpZmljYXRpb24gQXV0aG9yaXR5
+IC0gRzQwdjAQBgcqhkjOPQIBBgUrgQQAIgNiAASnVnp8Utpkmw4tXNherJI9/gHm
+GUo9FANL+mAnINmDiWn6VMaaGF5VKmTeBvaNSjutEDxlPZCIBIngMGGzrl0Bp3ve
+fLK+ymVhAIau2o970ImtTR1ZmkGxvEeA3J5iw/mjgbIwga8wDwYDVR0TAQH/BAUw
+AwEB/zAOBgNVHQ8BAf8EBAMCAQYwbQYIKwYBBQUHAQwEYTBfoV2gWzBZMFcwVRYJ
+aW1hZ2UvZ2lmMCEwHzAHBgUrDgMCGgQUj+XTGoasjY5rw8+AatRIGCx7GS4wJRYj
+aHR0cDovL2xvZ28udmVyaXNpZ24uY29tL3ZzbG9nby5naWYwHQYDVR0OBBYEFLMW
+kf3upm7ktS5Jj4d4gYDs5bG1MAoGCCqGSM49BAMDA2gAMGUCMGYhDBgmYFo4e1ZC
+4Kf8NoRRkSAsdk1DPcQdhCPQrNZ8NQbOzWm9kA3bbEhCHQ6qQgIxAJw9SDkjOVga
+FRJZap7v1VmyHVIsmXHNxynfGyphe3HR3vPA5Q06Sqotp9iGKt0uEA==
+-----END CERTIFICATE-----
+"
+;; Verisign Class 3 Public Primary Certification Authority
+;; issuer= /C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority
+;; subject= /C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority
+;; serial=70BAE41D10D92934B638CA7B03CCBABF
+;; SHA1 Fingerprint=74:2C:31:92:E6:07:E4:24:EB:45:49:54:2B:E1:BB:C5:3E:61:74:E2
+;; notBefore=Jan 29 00:00:00 1996 GMT
+;; notAfter=Aug  1 23:59:59 2028 GMT
+"-----BEGIN CERTIFICATE-----
+MIICPDCCAaUCEHC65B0Q2Sk0tjjKewPMur8wDQYJKoZIhvcNAQECBQAwXzELMAkG
+A1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMTcwNQYDVQQLEy5DbGFz
+cyAzIFB1YmxpYyBQcmltYXJ5IENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTk2
+MDEyOTAwMDAwMFoXDTI4MDgwMTIzNTk1OVowXzELMAkGA1UEBhMCVVMxFzAVBgNV
+BAoTDlZlcmlTaWduLCBJbmMuMTcwNQYDVQQLEy5DbGFzcyAzIFB1YmxpYyBQcmlt
+YXJ5IENlcnRpZmljYXRpb24gQXV0aG9yaXR5MIGfMA0GCSqGSIb3DQEBAQUAA4GN
+ADCBiQKBgQDJXFme8huKARS0EN8EQNvjV69qRUCPhAwL0TPZ2RHP7gJYHyX3KqhE
+BarsAx94f56TuZoAqiN91qyFomNFx3InzPRMxnVx0jnvT0Lwdd8KkMaOIG+YD/is
+I19wKTakyYbnsZogy1Olhec9vn2a/iRFM9x2Fe0PonFkTGUugWhFpwIDAQABMA0G
+CSqGSIb3DQEBAgUAA4GBALtMEivPLCYATxQT3ab7/AoRhIzzKBxnki98tsX63/Do
+lbwdj2wsqFHMc9ikwFPwTtYmwHYBV4GSXiHx0bH/59AhWM1pF+NEHJwZRDmJXNyc
+AA9WjQKZ7aKQRUzkuxCkPfAyAw7xzvjoyVGM5mKf5p/AfbdynMk2OmufTqj/ZA1k
+-----END CERTIFICATE-----
+"
+;; issuer= /C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority
+;; subject= /C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority
+;; serial=3C9131CB1FF6D01B0E9AB8D044BF12BE
+;; SHA1 Fingerprint=A1:DB:63:93:91:6F:17:E4:18:55:09:40:04:15:C7:02:40:B0:AE:6B
+;; notBefore=Jan 29 00:00:00 1996 GMT
+;; notAfter=Aug  2 23:59:59 2028 GMT
+"-----BEGIN CERTIFICATE-----
+MIICPDCCAaUCEDyRMcsf9tAbDpq40ES/Er4wDQYJKoZIhvcNAQEFBQAwXzELMAkG
+A1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMTcwNQYDVQQLEy5DbGFz
+cyAzIFB1YmxpYyBQcmltYXJ5IENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTk2
+MDEyOTAwMDAwMFoXDTI4MDgwMjIzNTk1OVowXzELMAkGA1UEBhMCVVMxFzAVBgNV
+BAoTDlZlcmlTaWduLCBJbmMuMTcwNQYDVQQLEy5DbGFzcyAzIFB1YmxpYyBQcmlt
+YXJ5IENlcnRpZmljYXRpb24gQXV0aG9yaXR5MIGfMA0GCSqGSIb3DQEBAQUAA4GN
+ADCBiQKBgQDJXFme8huKARS0EN8EQNvjV69qRUCPhAwL0TPZ2RHP7gJYHyX3KqhE
+BarsAx94f56TuZoAqiN91qyFomNFx3InzPRMxnVx0jnvT0Lwdd8KkMaOIG+YD/is
+I19wKTakyYbnsZogy1Olhec9vn2a/iRFM9x2Fe0PonFkTGUugWhFpwIDAQABMA0G
+CSqGSIb3DQEBBQUAA4GBABByUqkFFBkyCEHwxWsKzH4PIRnN5GfcX6kb5sroc50i
+2JhucwNhkcV8sEVAbkSdjbCxlnRhLQ2pRdKkkirWmnWXbj9T/UWZYB2oK0z5XqcJ
+2HUw19JlYD1n1khVdWk/kfVIC0dpImmClr7JyDiGSnoscxlIaU5rfGW/D/xwzoiQ
+-----END CERTIFICATE-----
+"
+;; #END-CERTIFICATE
+))
 
 (defun twittering-delete-ca-cert ()
   (when (and twittering-cert-file
@@ -4807,8 +5010,10 @@ string and the number of new statuses for the timeline."
 
 (defun twittering-get-status-url-from-alist (status)
   "Generate a URL of a tweet specified by an alist STATUS."
-  (let ((username (cdr (assq 'user-screen-name status)))
-	(id (cdr (assq 'id status)))
+  (let ((username (cdr (or (assq 'retweeted-user-screen-name status)
+			   (assq 'user-screen-name status))))
+	(id (cdr (or (assq 'retweeted-id status)
+		     (assq 'id status))))
 	(func
 	 (cdr (assq
 	       'status-url
@@ -5686,7 +5891,7 @@ get-service-configuration -- Get the configuration of the server.
 	   (parameters (if user-id
 			   `(("user_id" . ,user-id))
 			 `(("screen_name" . ,username)))))
-      (twittering-http-post twittering-api-host
+      (twittering-http-post account-info-alist twittering-api-host
 			    (twittering-api-path "blocks/create")
 			    parameters nil additional-info)))
    ((eq command 'block-and-report-as-spammer)
@@ -5696,7 +5901,7 @@ get-service-configuration -- Get the configuration of the server.
 	   (parameters (if user-id
 			   `(("user_id" . ,user-id))
 			 `(("screen_name" . ,username)))))
-      (twittering-http-post twittering-api-host
+      (twittering-http-post account-info-alist twittering-api-host
 			    (twittering-api-path "report_spam")
 			    parameters nil additional-info)))
    ((eq command 'get-service-configuration)
@@ -5859,7 +6064,7 @@ get-service-configuration -- Get the configuration of the server.
 		  ("include_entities" . "true")
 		  ,@(when max_id `(("max_id" . ,max_id)))
 		  ("q" . ,word)
-		  ("result_type" . "mixed")
+		  ("result_type" . "recent")
 		  ,@(when since_id `(("since_id" . ,since_id))))))
 	     (t
 	      (error
@@ -6046,7 +6251,7 @@ get-service-configuration -- Get the configuration of the server.
 				`(("user_id" . ,user-id))
 			      `(("screen_name" . ,username))))
 	   (format-str "json"))
-      (twittering-http-post host method http-parameters
+      (twittering-http-post account-info-alist host method http-parameters
 			    format-str additional-info)))
    ((eq command 'block-and-report-as-spammer)
     ;; Report a user as a spammer and block him or her.
@@ -6058,7 +6263,7 @@ get-service-configuration -- Get the configuration of the server.
 				`(("user_id" . ,user-id))
 			      `(("screen_name" . ,username))))
 	   (format-str "json"))
-      (twittering-http-post host method http-parameters
+      (twittering-http-post account-info-alist host method http-parameters
 			    format-str additional-info)))
    ((eq command 'get-service-configuration)
     (let* ((host "api.twitter.com")
@@ -6707,14 +6912,14 @@ GAP-LIST must be generated by `twittering-make-gap-list'."
 		   . ,value)))
 	     retweeting-status))))
      (t
-      (flet ((assq-get (item seq)
-		       (car (cddr (assq item seq)))))
+      (let ((assq-get (lambda (item seq)
+			(car (cddr (assq item seq))))))
 	`(,@(mapcar
 	     (lambda (entry)
 	       (let* ((sym (elt entry 0))
 		      (sym-in-data (elt entry 1))
 		      (encoded (elt entry 2))
-		      (data (assq-get sym-in-data status-data)))
+		      (data (funcall assq-get sym-in-data status-data)))
 		 `(,sym . ,(if encoded
 			       (twittering-decode-entities-after-parsing-xml
 				data)
@@ -6728,14 +6933,16 @@ GAP-LIST must be generated by `twittering-make-gap-list'."
 	       (text text t)
 	       ))
 	  ;; created_at
-	  (created-at . ,(date-to-time (assq-get 'created_at status-data)))
+	  (created-at
+	   . ,(date-to-time (funcall assq-get 'created_at status-data)))
 	  ;; Replace "true" and "false" into t and nil.
 	  ,@(mapcar (lambda (sym)
-		      `(,sym . ,(string= "true" (assq-get sym status-data))))
+		      `(,sym . ,(string= "true"
+					 (funcall assq-get sym status-data))))
 		    '(favorited truncated))
 	  ;; Entities.
 	  ,(let* ((entity-data (cddr (assq 'entities status-data)))
-		  (encoded-text (assq-get 'text status-data))
+		  (encoded-text (funcall assq-get 'text status-data))
 		  (text
 		   (twittering-decode-entities-after-parsing-xml encoded-text))
 		  (gap-list (twittering-make-gap-list text)))
@@ -6817,7 +7024,7 @@ GAP-LIST must be generated by `twittering-make-gap-list'."
 			(assq 'urls entity-data))))))
 	  ;; Source.
 	  ,@(let ((source (twittering-decode-html-entities
-			   (assq-get 'source status-data))))
+			   (funcall assq-get 'source status-data))))
 	      (if (and source
 		       (string-match "<a href=\"\\(.*?\\)\".*?>\\(.*\\)</a>"
 				     source))
@@ -6834,7 +7041,7 @@ GAP-LIST must be generated by `twittering-make-gap-list'."
 		 (let* ((sym (elt entry 0))
 			(sym-in-user-data (elt entry 1))
 			(encoded (elt entry 2))
-			(value (assq-get sym-in-user-data user-data)))
+			(value (funcall assq-get sym-in-user-data user-data)))
 		   `(,sym . ,(if encoded
 				 (twittering-decode-html-entities value)
 			       value))))
@@ -6850,8 +7057,9 @@ GAP-LIST must be generated by `twittering-make-gap-list'."
 	  ,@(let ((user-data (cddr (assq 'user status-data))))
 	      (mapcar (lambda (entry)
 			`(,(car entry)
-			  . ,(string= "true"
-				      (assq-get (cdr entry) user-data))))
+			  . ,(string=
+			      "true"
+			      (funcall assq-get (cdr entry) user-data))))
 		      '((user-protected . protected))))))))))
 
 (defun twittering-xmltree-to-status (xmltree)
@@ -7009,7 +7217,10 @@ to JSON objects from ordinary timeline and search timeline."
 			       . ,(cdr (assq 'display_url entry)))
 			      (expanded-url
 			       . ,(cdr (assq 'expanded_url entry))))))
-			urls))))))
+			urls)))
+      (retweet-count . ,(cdr (assq 'retweet_count json-object)))
+      (favorite-count . ,(cdr (assq 'favorite_count json-object)))
+      )))
 
 (defun twittering-json-object-to-a-status (json-object)
   "Convert JSON-OBJECT representing a tweet into an alist representation.
@@ -7828,68 +8039,28 @@ image are displayed."
 	    :ascent center
 	    :data
 	    "/* XPM */
-/*
- * Copyright (C) 2003 Yuuichi Teranishi <teranisi@gohome.org>
- * Copyright (C) 2003 Kazu Yamamoto <kazu@Mew.org>
- * Copyright (C) 2004 Yoshifumi Nishida <nishida@csl.sony.co.jp>
- * Copyright notice is the same as Mew's one.
- */
-static char * yellow3_xpm[] = {
-\"14 14 7 1\",
+static char * lock[] = {
+\"16 16 3 1\",
 \" 	c None\",
-\".	c #B07403\",
-\"+	c #EFEE38\",
-\"@	c #603300\",
-\"#	c #D0A607\",
-\"$	c #FAFC90\",
-\"%	c #241100\",
-\"    .++++@    \",
-\"   .+@...+@   \",
-\"  .+@    .+@  \",
-\"  .+@    .+@  \",
-\"  .+@    .+@  \",
-\"++########@@@@\",
-\"+$$++++++++#@@\",
-\"+$++++%@+++#@@\",
-\"+$+++%%%@++#@@\",
-\"+$+++%%%@++#@@\",
-\"+$++++%@+++#@@\",
-\"+$++++%@+++#@@\",
-\"+$+++++++++#@@\",
-\"++@@@@@@@@@@@@\"};
+\".	c #000000\",
+\"#	c #FFFFFF\",
+\"                \",
+\"                \",
+\"    ........    \",
+\"   ..######..   \",
+\"   .##....##.   \",
+\"   .#..  ..#.   \",
+\"   .#.    .#.   \",
+\"  ..#......#..  \",
+\"  .##########.  \",
+\"  .##########.  \",
+\"  .####..####.  \",
+\"  .###....###.  \",
+\"  .###....###.  \",
+\"  .##########.  \",
+\"  ............  \",
+\"                \"};
 "
-;;; The above image is copied from `mew-lock.xpm' distributed with Mew.
-;;; The copyright of the image is below, which is copied from `mew.el'.
-
-;;; Copyright Notice:
-
-;; Copyright (C) 1994-2009 Mew developing team.
-;; All rights reserved.
-
-;; Redistribution and use in source and binary forms, with or without
-;; modification, are permitted provided that the following conditions
-;; are met:
-;;
-;; 1. Redistributions of source code must retain the above copyright
-;;    notice, this list of conditions and the following disclaimer.
-;; 2. Redistributions in binary form must reproduce the above copyright
-;;    notice, this list of conditions and the following disclaimer in the
-;;    documentation and/or other materials provided with the distribution.
-;; 3. Neither the name of the team nor the names of its contributors
-;;    may be used to endorse or promote products derived from this software
-;;    without specific prior written permission.
-;;
-;; THIS SOFTWARE IS PROVIDED BY THE TEAM AND CONTRIBUTORS ``AS IS'' AND
-;; ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-;; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE TEAM OR CONTRIBUTORS BE
-;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
-;; BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-;; WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
-;; OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
-;; IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	    ))
   "Image for indicator of SSL state.")
 
@@ -7907,51 +8078,29 @@ static char * yellow3_xpm[] = {
 	    :ascent center
 	    :data
 	    "/* XPM */
-static char *plugged[] = {
-\"32 12 8 1\",
-\"  c None\",
-\". c #a6caf0\",
-\"# c #8fa5cf\",
-\"a c #717171\",
-\"b c #5d5d97\",
-\"c c #8488ca\",
-\"d c #9f9f9f\",
-\"e c #7f8080\",
-\"            ...                 \",
-\"           .ccb....             \",
-\"           accb####.            \",
-\"          .accb#####..          \",
-\"   eeeeeeeeaccb#####.eeeeeeee   \",
-\"   dddddddcaccb#####.dedddddd   \",
-\"   dddddddcaccb#####.dedddddd   \",
-\"   eeeeeeeeaccb#####.eeeeeeee   \",
-\"          aaccb####aaa          \",
-\"           accbaaaaa            \",
-\"           aaaaaaaa             \",
-\"            aaa                 \"
-};
+static char * connected[] = {
+\"16 16 3 1\",
+\" 	c None\",
+\".	c #000000\",
+\"#	c #FFFFFF\",
+\"      .##. ...  \",
+\"      .##. .#.  \",
+\"      .##...#.. \",
+\"      .##..###..\",
+\"      .##..###..\",
+\"      .##.#####.\",
+\"  ... .##.#.#.#.\",
+\"  .#. ..#...#...\",
+\"...#...#.. .#.  \",
+\".#.#.#.##. .#.  \",
+\".#####.##. ...  \",
+\"..### .##.      \",
+\" .###..##.      \",
+\" ..#...##.      \",
+\"  .#. .##.      \",
+\"  ... .##.      \"};
 "))
   "Image for indicator of active state."
-;;; The above image is copied from `plugged.xpm' distributed with Wanderlust
-;;; by Yuuichi Teranishi <teranisi@gohome.org>.
-;;; The copyright of the image is below, which is copied from `COPYING' of
-;;; Wanderlust 2.14.
-;; Copyright (C) 1998-2001 Yuuichi Teranishi <teranisi@gohome.org>
-;;
-;;    This program is free software; you can redistribute it and/or modify
-;;    it under the terms of the GNU General Public License as published by
-;;    the Free Software Foundation; either version 2, or (at your option)
-;;    any later version.
-;;
-;;    This program is distributed in the hope that it will be useful,
-;;    but WITHOUT ANY WARRANTY; without even the implied warranty of
-;;    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;;    GNU General Public License for more details.
-;;
-;;    You should have received a copy of the GNU General Public License
-;;    along with GNU Emacs; see the file COPYING.  If not, write to the
-;;    Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-;;    Boston, MA 02111-1307, USA.
 )
 
 (defconst twittering-inactive-indicator-image
@@ -7960,52 +8109,29 @@ static char *plugged[] = {
 	    :ascent center
 	    :data
 	    "/* XPM */
-static char * unplugged_xpm[] = {
-\"32 12 9 1\",
-\" 	s None	c None\",
-\".	c tomato\",
-\"X	c #a6caf0\",
-\"o	c #8488ca\",
-\"O	c #5d5d97\",
-\"+	c #8fa5cf\",
-\"@	c #717171\",
-\"#	c #7f8080\",
-\"$	c #9f9f9f\",
-\"          XXX......             \",
-\"           ...    ...           \",
-\"          ..O     ....X         \",
-\"         ..oO    ...+..XX       \",
-\"   ######.ooO   ...+++.X#####   \",
-\"   $$$$$o.ooO  ...@+++.X$#$$$   \",
-\"   $$$$$o.ooO ... @+++.X$#$$$   \",
-\"   ######.ooO...  @+++.X#####   \",
-\"         ..o...   @++..@@       \",
-\"          ....    @@..@         \",
-\"           ...    ...@          \",
-\"             ......             \"
-};
+static char * disconnected[] = {
+\"16 16 3 1\",
+\" 	c None\",
+\".	c #000000\",
+\"#	c #FFFFFF\",
+\"      .##.      \",
+\"      .##.      \",
+\"    . .##.      \",
+\"    ...##.      \",
+\"     ..##.      \",
+\"      ..#.      \",
+\"    .. ...      \",
+\"     .. ..      \",
+\"      .. ..     \",
+\"      ... ..    \",
+\"      .#..      \",
+\"      .##..     \",
+\"      .##...    \",
+\"      .##. .    \",
+\"      .##.      \",
+\"      .##.      \"};
 "))
   "Image for indicator of inactive state."
-;;; The above image is copied from `unplugged.xpm' distributed with Wanderlust
-;;; by Yuuichi Teranishi <teranisi@gohome.org>.
-;;; The copyright of the image is below, which is copied from `COPYING' of
-;;; Wanderlust 2.14.
-;; Copyright (C) 1998-2001 Yuuichi Teranishi <teranisi@gohome.org>
-;;
-;;    This program is free software; you can redistribute it and/or modify
-;;    it under the terms of the GNU General Public License as published by
-;;    the Free Software Foundation; either version 2, or (at your option)
-;;    any later version.
-;;
-;;    This program is distributed in the hope that it will be useful,
-;;    but WITHOUT ANY WARRANTY; without even the implied warranty of
-;;    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;;    GNU General Public License for more details.
-;;
-;;    You should have received a copy of the GNU General Public License
-;;    along with GNU Emacs; see the file COPYING.  If not, write to the
-;;    Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-;;    Boston, MA 02111-1307, USA.
 )
 
 (defconst twittering-modeline-properties
@@ -11144,8 +11270,7 @@ How to edit a tweet is determined by `twittering-update-status-funcion'."
 
 (defun twittering-native-retweet ()
   (interactive)
-  (let ((id (or (get-text-property (point) 'retweeted-id)
-		(get-text-property (point) 'id)))
+  (let ((id (get-text-property (point) 'id))
 	(text (copy-sequence (get-text-property (point) 'text)))
 	(user (get-text-property (point) 'username))
 	(width (max 40 ;; XXX
@@ -11721,10 +11846,9 @@ and a tweet is pointed, the URI to the tweet is insteadly pushed."
   (interactive)
   (let ((uri (or (get-text-property (point) 'uri)
 		 (if (get-text-property (point) 'field)
-		     (let ((id (or (get-text-property (point) 'retweeted-id)
-				   (get-text-property (point) 'id)))
-			   (username (get-text-property (point) 'username)))
-		       (twittering-get-status-url username id))
+		     (let* ((id (get-text-property (point) 'id))
+			    (status (twittering-find-status id)))
+		       (twittering-get-status-url-from-alist status))
 		   nil))))
     (cond
      ((not (stringp uri))
