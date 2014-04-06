@@ -9,7 +9,7 @@
   (load (expand-file-name (concat user-emacs-directory "compatible/package-install.el"))))
 
 ;;====================
-;; Bootstrap::
+;; Bootstrap::load-path
 ;;====================
 ;; サブディレクトリに配置したEmacs-Lispをload-pathを追加する関数を定義する
 ;; この関数を使用することで自動的にサブディレクトリもload-pathに追加するようになる
@@ -22,18 +22,7 @@
         (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
             (normal-top-level-add-subdirs-to-load-path))))))
 
-(add-to-load-path "el-get" "elpa" "auto-install" "elisp")
-
-;;====================
-;; Bootstrap::Packages
-;;====================
-(setq el-get-dir (expand-file-name (concat user-emacs-directory "el-get/packages")))
-(unless (require 'el-get nil 'noerror)
-(with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
+(add-to-load-path "el-get" "elpa" "elisp")
 
 ;;====================
 ;; Bootstrap::Initialize
@@ -66,7 +55,7 @@
   (setq auto-install-directory
         (expand-file-name (concat user-emacs-directory "elisp")))
   (auto-install-update-emacswiki-package-name t)
-;;  (setq url-proxy `(("http" . "localhost:8080")))
+  ;;  (setq url-proxy `(("http" . "localhost:8080")))
   (auto-install-compatibility-setup)
   (setq ediff-window-setup-function `ediff-setup-windows-plain)
 )

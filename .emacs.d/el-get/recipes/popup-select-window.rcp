@@ -1,0 +1,5 @@
+(:name popup-select-window
+       :type http
+       :url "http://www.emacswiki.org/emacs/download/popup-select-window.el"
+       :features "popup-select-window"
+       )
