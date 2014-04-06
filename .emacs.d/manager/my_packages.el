@@ -20,6 +20,7 @@
 (defvar my-package-list
   '(auto-complete
     helm
+    helm-ag
     android-mode
     company
     etags-table

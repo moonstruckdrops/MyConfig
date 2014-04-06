@@ -56,6 +56,7 @@ install maven2
 ## Utils
 install coreutils
 install tree
+install ag
 install jq
 install groovyserv
 install mosh
