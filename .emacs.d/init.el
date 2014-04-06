@@ -22,7 +22,7 @@
         (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
             (normal-top-level-add-subdirs-to-load-path))))))
 
-(add-to-load-path "el-get" "elpa" "elisp")
+(add-to-load-path "el-get" "elpa")
 
 ;;====================
 ;; Bootstrap::Initialize
@@ -38,48 +38,10 @@
 ;; Utilities(General)
 ;;====================
 
-
-
-;; auto-installの設定
-;; wgetコマンドが見つかった場合は以下の設定を実行する
-;; 1.auto-installのpathを設定
-;; 2.起動時にEmacsWikiを補完候補に加える
-;; 3.install-elisp.el互換モードにする
-;; 4.ediff関連のバッファを一つのフレームにまとめる
-;; このauto-installを利用するには以下を設定しておく
-;; 1.wgetコマンドをインストールし利用可能にする
-;; 2.シンボリックリンクを作成しておく
-;;   sudo ln -s /opt/local/bin/wget /usr/bin/wget
-(when (executable-find "wget")
-  (require `auto-install)
-  (setq auto-install-directory
-        (expand-file-name (concat user-emacs-directory "elisp")))
-  (auto-install-update-emacswiki-package-name t)
-  ;;  (setq url-proxy `(("http" . "localhost:8080")))
-  (auto-install-compatibility-setup)
-  (setq ediff-window-setup-function `ediff-setup-windows-plain)
-)
-
-;; growl notifyの設定
-;; 使用OSがMacでgrowlnotifyコマンドが存在する場合に実行可能にする
-(setq growl-program "/usr/local/bin/growlnotify")
-(defun growl (title message &optional app)
-  (start-process "Growl" "*Growl*" growl-program
-                 "-t" title
-                 "-m" message
-                 "-a" app))
-
-
-
-
-;;(require 'navi2ch)
-;;(load ".twitter")
-
 (load ".ruby")
 (load ".objective-c")
 
 ;; go-mode
-(require 'go-mode)
 (load ".go")
 ;; json-mode
 (require 'json)
@@ -151,13 +113,16 @@
 ;;(add-hook `c++-mode-hook `android-compile)
 ;;(add-hook `java-mode-hook `android-compile)
 
-;;====================
-;; markdown
-;;====================
-(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
-(setq auto-mode-alist
-      (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
 
+
+;; growl notifyの設定
+;; 使用OSがMacでgrowlnotifyコマンドが存在する場合に実行可能にする
+(setq growl-program "/usr/local/bin/growlnotify")
+(defun growl (title message &optional app)
+  (start-process "Growl" "*Growl*" growl-program
+                 "-t" title
+                 "-m" message
+                 "-a" app))
 
 
 (dolist (dir (list
@@ -174,14 +139,3 @@
  (when (and (file-exists-p dir) (not (member dir exec-path)))
    (setenv "PATH" (concat dir ":" (getenv "PATH")))
    (setq exec-path (append (list dir) exec-path))))
-
-
-;; バッファ分割中にポップアップ
-(require 'popup)
-(require 'popup-select-window)
-(global-set-key "\C-xo" 'popup-select-window)
-;; 2つ以上のときにポップアップ
-(setq popup-select-window-popup-windows 2)
-;; 選択中のウィンドウの色を変更
-(setq popup-select-window-window-highlight-face
-      '(:foreground "white" :background "orange"))

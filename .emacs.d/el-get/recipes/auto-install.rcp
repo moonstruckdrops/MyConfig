@@ -1,0 +1,5 @@
+(:name auto-install
+       :type http
+       :url "http://www.emacswiki.org/emacs/download/auto-install.el"
+       :features "auto-install"
+       )

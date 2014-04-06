@@ -18,7 +18,8 @@
 
 ;; インストールするpackage一覧
 (defvar my-package-list
-  '(helm
+  '(auto-complete
+    helm
     android-mode
     company
     etags-table
@@ -46,7 +47,8 @@
     ruby-mode
     twittering-mode
     yaml-mode
-    yasnippet)
+    yasnippet
+    navi2ch)
   )
 
 ;; Emacs起動時に自動でパッケージをインストール
@@ -78,6 +80,8 @@
  
 (defvar my-el-get-packages
   '(popup-select-window
+    ac-company
+    ipa
     ))
  
 (el-get 'sync my-el-get-packages)

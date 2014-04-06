@@ -1,32 +1,18 @@
 # -*- coding: utf-8 -*-
 require "shell"
 
-##### Directory
-dir_list = {
-   :elisp_dir=>"elisp",
-   :backups_dir=>"backups",
-   :elpa_dir=>"elpa",
-   :share_dir=>"share",
-   :url_dir=>"url",
-}
-
-##### execute
-result_dir = []
-sh = Shell.new
-dir_list.each{|key,value|
-#   result_dir = sh.mkdir(value)
-}
-
-
+# username : 引数1番目
+# password : 引数2番目
 
 ##### Generate
-conf_file_name = "conf/.twitter.el"
+conf_file_name = "conf/100_twitter_and_2ch.el"
 twitter = <<EOS
-(require `twittering-mode)
+(require 'navi2ch)
+(require 'twittering-mode)
 ;; #認証方式、ユーザー名とパスワードの設定
 (setq twittering-auth-method 'xauth)
-(setq twittering-username "username")
-(setq twittering-password "password")
+(setq twittering-username "#{ARGV[0]}")
+(setq twittering-password "#{ARGV[1]}")
 ;; #プロキシ設定
 ;; (setq twittering-proxy-use ユーザー名)
 ;; (setq twittering-proxy-server "127.0.0.1")
@@ -52,35 +38,3 @@ EOS
 open(conf_file_name, "w") {|f|
    f.write twitter
 }
-
-
-
-##### Notification
-p "##################"
-p "Lisp Directory Success!!"
-result_dir.each{|result|
-   p result
-}
-
-p "Please install elisp."
-package= <<-EOS
-    twittering-mode
-    ruby-electric
-    ruby-end
-    ruby-mode
-    ruby-block
-    markdown-mode
-    json
-    gtags
-    groovy-mode
-    flymake-ruby
-    flymake-easy
-    company
-    go
-    popup
-    anything
-    linum
-EOS
-p package
-p "##################"
-

@@ -1,0 +1,5 @@
+(:name ipa
+       :type http
+       :url "http://www.emacswiki.org/emacs/download/ipa.el"
+       :features "ipa"
+       )
