@@ -9,7 +9,7 @@
   (load (expand-file-name (concat user-emacs-directory "compatible/package-install.el"))))
 
 ;;====================
-;; Bootstrap
+;; Bootstrap::
 ;;====================
 ;; サブディレクトリに配置したEmacs-Lispをload-pathを追加する関数を定義する
 ;; この関数を使用することで自動的にサブディレクトリもload-pathに追加するようになる
@@ -22,9 +22,22 @@
         (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
             (normal-top-level-add-subdirs-to-load-path))))))
 
-(add-to-load-path "elisp" "elpa" "conf" "auto-install")
+(add-to-load-path "el-get" "elpa" "auto-install" "elisp")
 
-;; init-loader
+;;====================
+;; Bootstrap::Packages
+;;====================
+(setq el-get-dir (expand-file-name (concat user-emacs-directory "el-get/packages")))
+(unless (require 'el-get nil 'noerror)
+(with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+;;====================
+;; Bootstrap::Initialize
+;;====================
 (require 'init-loader)
 ;; 設定ディレクトリ
 (init-loader-load  (concat user-emacs-directory "conf"))
