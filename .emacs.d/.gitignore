@@ -3,7 +3,7 @@
 ._*
 *.elc
 backups/**
-conf/.twitter.el
+conf/100_twitter.el
 share/frm.tags
 ac-comphist.dat
 .DS_Store
@@ -13,3 +13,4 @@ el-get/.status.el
 el-get/.status.el.old
 el-get/el-get/**
 el-get/packages/**
+elpa/**
