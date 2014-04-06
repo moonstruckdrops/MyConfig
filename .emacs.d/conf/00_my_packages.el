@@ -77,11 +77,11 @@
 (require 'el-get)
 (setq el-get-dir (expand-file-name (concat user-emacs-directory "el-get/packages")))
 (add-to-list 'el-get-recipe-path (concat user-emacs-directory "el-get/recipes"))
- 
+
 (defvar my-el-get-packages
   '(popup-select-window
     ac-company
     ipa
     ))
- 
+
 (el-get 'sync my-el-get-packages)

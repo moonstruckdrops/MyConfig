@@ -1,3 +1,5 @@
-;; yaml-mode
+;;====================
+;; yaml-mode Settings
+;;====================
 (when (require 'yaml-mode nil t)
   (add-to-list 'auto-mode-alist '("¥¥.yml$" . yaml-mode)))

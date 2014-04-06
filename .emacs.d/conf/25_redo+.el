@@ -1,3 +1,6 @@
+;;====================
+;; redo+ Settings
+;;====================
 (require 'redo+)
 (global-set-key (kbd "") 'redo)
 ;; 過去のundoがredoされない設定
