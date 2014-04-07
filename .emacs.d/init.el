@@ -27,6 +27,14 @@
 ;;====================
 ;; Bootstrap::Initialize
 ;;====================
+;; タイトルにフルパスを表示
+(setq frame-title-format "%f")
+;; ツールバーを非表示
+(tool-bar-mode 0)
+;; メニューバーを非表示
+(menu-bar-mode 0)
+
+;; 使用パッケージのインストール
 (load "my_packages")
 
 (require 'init-loader)
