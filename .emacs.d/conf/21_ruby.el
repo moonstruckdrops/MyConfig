@@ -21,6 +21,12 @@
 ;; ruby-electric
 ;; 括弧の自動挿入
 (when (require 'ruby-electric nil t)
+  ;; ruby-electric-space: Symbol's function definition is void: ruby-insert-endのエラー回避
+  (defun ruby-insert-end ()
+    (interactive)
+    (insert "end")
+    (ruby-indent-line t)
+    (end-of-line))
   (add-hook 'ruby-mode-hook
             (lambda ()
               (ruby-electric-mode t))))
