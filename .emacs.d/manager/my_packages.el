@@ -46,6 +46,7 @@
     ruby-electric
     ruby-end
     ruby-mode
+    php-mode
     twittering-mode
     yaml-mode
     yasnippet
