@@ -10,20 +10,8 @@
 (when (eq system-type 'darwin)
   (require 'ucs-normalize)
   (set-file-name-coding-system 'utf-8-hfs)
-  (setq locale-coding-system 'utf-8-hfs))
-(when (eq window-system 'w32)
-  (require 'ucs-normalize)
-  (set-file-name-coding-system 'cp932)
-  (setq locale-coding-system 'cp932))
-
-;;(set-frame-font "fontset-bitstreammarugo")
-;;(set-fontset-font (frame-parameter nil 'font)
-;;                   'unicode
-;;                   (font-spec :family "Hiragino Maru Gothic ProN" :size 16)
-;;                   nil
-;;                   'append)
-
-(let* ((size 14)
+  (setq locale-coding-system 'utf-8-hfs)
+  (let* ((size 14)
          (asciifont "Menlo")
          (jpfont "Hiragino Maru Gothic ProN")
          (h (* size 10))
@@ -38,3 +26,16 @@
     (set-fontset-font nil 'japanese-jisx0213-2 jp-fontspec)
     (set-fontset-font nil '(#x0080 . #x024F) fontspec)
     (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
+  )
+(when (eq window-system 'w32)
+  (require 'ucs-normalize)
+  (set-file-name-coding-system 'cp932)
+  (setq locale-coding-system 'cp932))
+
+;;(set-frame-font "fontset-bitstreammarugo")
+;;(set-fontset-font (frame-parameter nil 'font)
+;;                   'unicode
+;;                   (font-spec :family "Hiragino Maru Gothic ProN" :size 16)
+;;                   nil
+;;                   'append)
+

@@ -43,15 +43,24 @@
 (show-paren-mode 1)
 ;; 現在行のハイライト
 ;; 現在の行に下線を表示する
+;; TODO : windowモードで切り分ける
+;;(defface my-hl-line-face
+;;  '((((class color) (background dark))
+;;     (:background "dark slate gray"
+;;                  :underline "DarkOrange2"))
+;;    (((class color) (background light))
+;;     (:background "ForestGreen"
+;;                  :underline "DarkOrange2"))
+;;    (t(:bold t)))
+;;  "*Face used by hl-line.")
 (defface my-hl-line-face
   '((((class color) (background dark))
-     (:background "dark slate gray"
-                  :underline "DarkOrange2"))
+     (:underline "DarkOrange2"))
     (((class color) (background light))
-     (:background "ForestGreen"
-                  :underline "DarkOrange2"))
+     (:underline "DarkOrange2"))
     (t(:bold t)))
   "*Face used by hl-line.")
+
 (setq hl-line-face 'my-hl-line-face)
 (global-hl-line-mode t)
 ;; mini bufferの文字色を変更する
