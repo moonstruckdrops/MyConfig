@@ -78,6 +78,7 @@ cask install alfred
 cask install google-japanese-ime
 cask install onepassword
 cask install appcleaner
+cask install menumeters
 cask install thunderbird
 cask install skype
 cask install hipchat

@@ -18,7 +18,9 @@
 
 ;; インストールするpackage一覧
 (defvar my-package-list
-  '(auto-complete
+  '(exec-path-from-shell
+    cl-lib
+    auto-complete
     helm
     helm-ag
     android-mode
