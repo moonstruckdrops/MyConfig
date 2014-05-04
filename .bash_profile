@@ -73,6 +73,9 @@ export CATALINA_HOME='/usr/local/Cellar/tomcat/7.0.47/libexec'
 export GOPATH="/usr/local/Cellar/go/1.1.2/"
 export PATH=$PATH:$GOPATH/bin
 
+# Packer
+export PACKER_LOG=1
+
 ##############################
 #
 # Completion

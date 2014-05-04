@@ -106,6 +106,8 @@ cask install android-file-transfer
 cask install remote-desktop-connection
 cask install cooviewer
 cask install bathyscaphe
+cask install ripit
+cask install handbrake
 
 ##############################
 #
