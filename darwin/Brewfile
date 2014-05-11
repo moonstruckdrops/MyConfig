@@ -58,7 +58,8 @@ install coreutils
 install tree
 install ag
 install jq
-install groovyserv
+# TODO : java install後
+# install groovyserv
 install mosh
 install tmux
 install nkf

@@ -76,6 +76,11 @@ export PATH=$PATH:$GOPATH/bin
 # Packer
 export PACKER_LOG=1
 
+# homebrew
+if [ `echo "${OSTYPE}" |grep "darwin*"` ];then
+    export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+fi
+
 ##############################
 #
 # Completion
@@ -86,6 +91,8 @@ if [ -f /etc/profile.d/bash_completion.sh ]; then
     . /etc/profile.d/bash_completion.sh
 elif [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
+elif [ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ]; then
+    . $(brew --prefix)/etc/profile.d/bash_completion.sh
 fi
 
 # Git
@@ -111,6 +118,16 @@ if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh  ]; then
 else
     export PS1="\u@\h:\w$"
 fi
+
+# histroyの日付フォーマット
+HISTTIMEFORMAT='%Y/%m/%d %T : ';
+export HISTTIMEFORMAT
+# historyの数を増やす
+export HISTSIZE=10000
+# コマンドの履歴に残さない
+export HISTIGNORE="fg*:bg*:history*:cd*:ls*:source*:ll*"
+# 空白を履歴に保存せず、重複履歴を保存しない
+export HISTCONTROL=ignoreboth
 
 # Java
 PATH=${JAVA_HOME}/bin:$PATH

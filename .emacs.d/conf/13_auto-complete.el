@@ -11,6 +11,7 @@
 (ac-config-default)
 ;; 補完ウィンドウ内でのキー定義
 (setq ac-use-menu-map t)
+(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
 (define-key ac-completing-map (kbd "C-n") 'ac-next)
 (define-key ac-completing-map (kbd "C-p") 'ac-previous)
 (define-key ac-completing-map (kbd "M-/") 'ac-stop)
@@ -51,3 +52,5 @@
 (add-hook 'java-mode-hook
           (lambda ()
             (push 'ac-source-etags ac-sources)))
+
+
