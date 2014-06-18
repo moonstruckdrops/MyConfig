@@ -32,7 +32,7 @@ install tig
 install subversion
 
 ## Editor
-install emacs --cocoa --keep-ctags --srgb --with-gnutls --with-x
+install emacs --cocoa --keep-ctags --srgb --with-gnutls
 
 ## Languages
 install rbenv
@@ -118,6 +118,9 @@ cask install handbrake
 
 ## Link GUI Application
 linkapps
+
+## Link Alfred
+cask alfred link 
 
 ## Remove outdated versions
 cleanup

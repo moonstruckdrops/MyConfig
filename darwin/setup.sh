@@ -17,8 +17,8 @@ export RBENV_ROOT=/usr/local/var/rbenv
 if which rbenv > /dev/null; then
     eval "$(rbenv init -)";
 fi
-/usr/local/bin/rbenv install 2.0.0-p247
-/usr/local/bin/rbenv global 2.0.0-p247
+/usr/local/bin/rbenv install 2.1.2
+/usr/local/bin/rbenv global 2.1.2
 /usr/local/bin/rbenv rehash
 
 #==========================
@@ -30,11 +30,20 @@ gem install padrino --no-ri --no-rdoc
 gem install chef --no-ri --no-rdoc
 gem install knife-solo --no-ri --no-rdoc
 
+#==========================
+# Vagrant Plugin Settings
+#==========================
+vagrant plugin install sahara
 
 #==========================
 # MySql Settings
 #==========================
 mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+
+#==========================
+# Mac Settings
+#==========================
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist
 
 #==========================
 # Notification
