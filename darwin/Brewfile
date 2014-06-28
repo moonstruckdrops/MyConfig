@@ -55,6 +55,7 @@ install maven2
 
 ## Utils
 install coreutils
+install source-highlight
 install tree
 install ag
 install jq
@@ -64,6 +65,7 @@ install mosh
 install tmux
 install nkf
 install wget
+install swftools
 
 ## Image
 install imagemagick

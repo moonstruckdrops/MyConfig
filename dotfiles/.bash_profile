@@ -105,6 +105,10 @@ if [ `echo "${OSTYPE}" |grep "darwin*"` ];then
     #PATH=$PATH:${ANDROID_SOURCE}
     #TOMCAT
     PATH=$PATH:${CATALINA_HOME}
+
+    export LESS='-R'
+    export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
+
 fi
 
 ##############################
