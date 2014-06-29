@@ -108,7 +108,6 @@ if [ `echo "${OSTYPE}" |grep "darwin*"` ];then
 
     export LESS='-R'
     export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
-
 fi
 
 ##############################
@@ -168,6 +167,8 @@ if [ `echo "${OSTYPE}" |grep "darwin*"` ];then
     alias startup2Tomcat='/usr/local/Cellar/tomcat/7.0.47/libexec/bin/startup.sh'
     alias shutdown2Tomcat='/usr/local/Cellar/tomcat/7.0.47/libexec/bin/shutdown.sh'
 
+    # gist
+    alias gist='gist --private'
 
     #git
     #alias git="/usr/local/Cellar/git/1.7.12/bin/git"

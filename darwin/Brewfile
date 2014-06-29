@@ -66,6 +66,7 @@ install tmux
 install nkf
 install wget
 install swftools
+install gist
 
 ## Image
 install imagemagick
