@@ -43,8 +43,12 @@ mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --
 #==========================
 # Mac Settings
 #==========================
+# 通知センターをOFF
 launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist
-
+# Finderの音を消す
+defaults write com.apple.finder FinderSounds -bool no
+# iTunesの背景を変更
+defaults write com.apple.iTunes high-contrast-mode-enable -bool true
 #==========================
 # Notification
 #==========================
