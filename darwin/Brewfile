@@ -106,7 +106,7 @@ cask install intellij-idea
 cask install rubymine
 cask install android-studio
 cask install xamarin-studio
-cask install keyremap4macbook
+cask install karabiner
 cask install android-file-transfer
 cask install remote-desktop-connection
 cask install cooviewer
