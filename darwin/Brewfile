@@ -115,6 +115,7 @@ cask install ripit
 cask install handbrake
 cask install pivotalbooster
 cask install fluid
+cask install slack
 
 ##############################
 #
