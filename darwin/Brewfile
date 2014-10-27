@@ -11,9 +11,11 @@ update
 upgrade
 
 ## Add Repositories
-tap phinze/homebrew-cask || true
 tap homebrew/versions || true
 tap homebrew/binary || true
+tap homebrew/completions || true
+tap phinze/homebrew-cask || true
+tap dupes/libiconv || true
 
 ##############################
 #
@@ -76,6 +78,19 @@ install docker
 install boot2docker
 install packer
 
+## Completions
+install ruby-completion
+install bundler-completion
+install gem-completion
+install rake-completion
+install rails-completion
+install kitchen-completion
+install vagrant-completion
+install packer-completion
+install docker-completion
+install maven-completion
+install spring-completion
+
 ## Casks 
 install brew-cask
 cask install alfred
@@ -93,6 +108,7 @@ cask install google-drive
 cask install cyberduck
 cask install virtualbox
 cask install vagrant
+cask install vagrant-manager
 cask install sublime-text
 cask install iterm2
 cask install wireshark
@@ -113,9 +129,11 @@ cask install cooviewer
 cask install bathyscaphe
 cask install ripit
 cask install handbrake
-cask install pivotalbooster
+# pivotalを使用する場合、有効化
+# cask install pivotalbooster
 cask install fluid
 cask install slack
+cask install genymotion
 
 ##############################
 #
